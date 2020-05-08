@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dd.ddfgm.mapper.AccountMapper">
+    <!--查询所有账户的数量-->
+    <select id="getAccountNum" resultType="java.lang.Integer">
+        SELECT COUNT(UID) FROM d_taiwan.accounts
+    </select>
+
+    <!--查询指定账户的信息包括D点D币-->
+    <select id="getAccountInfo" resultType="com.dd.ddfgm.entity.Account" parameterType="java.lang.Integer">
+        select a.UID, a.accountname, a.qq, c.cera, b.cera_point from d_taiwan.accounts as a
+        inner join taiwan_billing.cash_cera as c on a.UID = c.account
+        inner join taiwan_billing.cash_cera_point as b on a.UID = b.account
+        <where>
+            <if test="accountname!=null and accountname!=''">
+                and a.accountname = #{accountname}
+            </if>
+        </where>
+    </select>
+</mapper>

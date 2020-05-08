@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.dd.ddfgm.dao")
+@MapperScan(basePackages = "com.dd.ddfgm.mapper")
 public class DdfgmApplication {
 
     public static void main(String[] args) {

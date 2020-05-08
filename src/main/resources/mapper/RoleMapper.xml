@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dd.ddfgm.mapper.RoleMapper">
+    <!--查询单个角色信息-->
+    <select id="getRole" resultType="com.dd.ddfgm.entity.Role" parameterType="java.lang.String">
+        select m_id,charac_no,job,lev,convert(unhex(hex(convert(`charac_name` using latin1))) using utf8) as charac_name from taiwan_cain.charac_info
+        <where>
+            <if test="charac_name!=null and charac_name!=''">
+                charac_name = #{charac_name}
+            </if>
+        </where>
+    </select>
+
+    <!--查询指定账户的所有角色信息-->
+    <select id="getRoles" resultType="com.dd.ddfgm.entity.Role" parameterType="java.lang.Integer">
+        select m_id,charac_no,job,lev, convert(unhex(hex(convert(`charac_name` using latin1))) using utf8) as charac_name from taiwan_cain.charac_info
+        <where>
+            <if test="uid!=null and uid!=''">
+                and m_id = #{uid}
+            </if>
+        </where>
+    </select>
+</mapper>
