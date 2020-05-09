@@ -25,5 +25,6 @@ public class AccountMapperTest {
         Account account = accountMapper.getAccountInfo("111111");
         System.out.println(account.getAccountname());
         System.out.println(account.getCera());
+        System.out.println(account.getQq());
     }
 }

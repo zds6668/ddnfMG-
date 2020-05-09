@@ -20,7 +20,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account getAccountInfo(String accountname) {
-        return accountMapper.getAccountInfo(accountname);
+        Account account = accountMapper.getAccountInfo(accountname);
+        if (account.getQq() == null)
+            account.setQq("没有qq");
+        return account;
     }
 
     @Override

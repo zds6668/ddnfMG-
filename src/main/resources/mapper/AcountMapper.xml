@@ -7,7 +7,7 @@
     </select>
 
     <!--查询指定账户的信息包括D点D币-->
-    <select id="getAccountInfo" resultType="com.dd.ddfgm.entity.Account" parameterType="java.lang.Integer">
+    <select id="getAccountInfo" resultType="com.dd.ddfgm.entity.Account">
         select a.UID, a.accountname, a.qq, c.cera, b.cera_point from d_taiwan.accounts as a
         inner join taiwan_billing.cash_cera as c on a.UID = c.account
         inner join taiwan_billing.cash_cera_point as b on a.UID = b.account
