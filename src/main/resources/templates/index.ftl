@@ -143,7 +143,8 @@
                         <th style="width: 10%">角色id</th>
                         <th style="width: 15%">角色名</th>
                         <th style="width: 10%">职业</th>
-                        <th>等级</th>
+                        <th>等级(70满级)</th>
+                        <th>角色创建时间</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -162,13 +163,14 @@
                       <#list roles as role>
                         <tr>
                           <td>${role.charac_no}</td>
-                          <td>职业${role.charac_name}</td>
+                          <td>${role.charac_name}</td>
                           <td><span class="label label-warning">${role.job}</span></td>
                           <td>
                             <div class="progress progress-striped progress-sm">
                               <div class="progress-bar progress-bar-warning" style="width: ${role.lev / 70 * 100}%;">${role.lev}</div>
                             </div>
                           </td>
+                          <td>${role.getCreate_time()}</td>
                         </tr>
                       </#list>
                     </#if>

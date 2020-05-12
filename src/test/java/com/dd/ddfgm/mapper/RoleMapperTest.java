@@ -1,6 +1,8 @@
 package com.dd.ddfgm.mapper;
 
 import com.dd.ddfgm.entity.Role;
+import com.dd.ddfgm.enums.JobsEnum;
+import com.dd.ddfgm.utils.EnumUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,8 @@ public class RoleMapperTest {
         List<Role> roles = roleMapper.getRoles(1);
         System.out.println(roles.size());
         for (Role role:roles) {
-            System.out.println(role.getCharac_name());
+            String job = role.getJob() + "_" +  role.getGrow_type();
+            System.out.println(EnumUtil.getByCode(job, JobsEnum.class).getGameCareer());
         }
 
     }
