@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,9 @@ public class AccountController {
                 map.put("status", operatStatus.FAILED.getStatus());
                 map.put("account", null);
             } else {
+                Integer uid = account.getUID();
+                List<Role> roles = accountService.getRoles(uid);
+                map.put("roles", roles);
                 map.put("status", operatStatus.SUCCESS.getStatus());
                 map.put("account", account);
             }

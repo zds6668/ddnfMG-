@@ -22,7 +22,7 @@ public class AccountServiceImpl implements AccountService {
     public Account getAccountInfo(String accountname) {
         Account account = accountMapper.getAccountInfo(accountname);
         if (account.getQq() == null)
-            account.setQq("没有qq");
+            account.setQq("这逼很神秘,没有留下qq");
         return account;
     }
 

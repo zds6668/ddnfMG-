@@ -20,8 +20,8 @@
             <div class="card bg-danger">
               <div class="card-body clearfix">
                 <div class="pull-right">
-                  <p class="h6 text-white m-t-0">玩家总数</p>
-                  <p class="h3 text-white m-b-0">#{accountNum}</p>
+                  <p class="h6 text-white m-t-0">全服玩家总数</p>
+                  <p class="h3 text-white m-b-0">${accountNum}</p>
                 </div>
                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
               </div>
@@ -41,7 +41,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>#{account.getUID()}</p>
+                  <p>${account.getUID()}</p>
                 </#if>
               </div>
             </div>
@@ -61,7 +61,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>qq号</p>
+                  <p>${account.getQq()}</p>
                 </#if>
               </div>
             </div>
@@ -99,7 +99,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>#{account.getCera()}</p>
+                  <p>${account.getCera()}</p>
                 </#if>
               </div>
             </div>
@@ -120,7 +120,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>#{account.getCera_point()}</p>
+                  <p>${account.getCera_point()}</p>
                 </#if>
               </div>
             </div>
@@ -133,41 +133,52 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h4>项目信息</h4>
+                <h4>账号角色信息</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>项目名称</th>
-                        <th>开始日期</th>
-                        <th>截止日期</th>
-                        <th>状态</th>
-                        <th>进度</th>
+                        <th style="width: 10%">角色id</th>
+                        <th style="width: 15%">角色名</th>
+                        <th style="width: 10%">职业</th>
+                        <th>等级</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <#if !roles??>
                       <tr>
-                        <td>1</td>
-                        <td>设计新主题</td>
-                        <td>10/02/2019</td>
-                        <td>12/05/2019</td>
-                        <td><span class="label label-warning">待定</span></td>
+                        <td>查下你的角色吧</td>
+                        <td>..</td>
+                        <td><span class="label label-warning">..</span></td>
                         <td>
                           <div class="progress progress-striped progress-sm">
-                            <div class="progress-bar progress-bar-warning" style="width: 45%;"></div>
+                            <div class="progress-bar progress-bar-warning" style="width: 0;">..</div>
                           </div>
                         </td>
                       </tr>
+                    <#else >
+                      <#list roles as role>
+                        <tr>
+                          <td>${role.charac_no}</td>
+                          <td>职业${role.charac_name}</td>
+                          <td><span class="label label-warning">${role.job}</span></td>
+                          <td>
+                            <div class="progress progress-striped progress-sm">
+                              <div class="progress-bar progress-bar-warning" style="width: ${role.lev / 70 * 100}%;">${role.lev}</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </#list>
+                    </#if>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-          
+
         </div>
         
       </div>
