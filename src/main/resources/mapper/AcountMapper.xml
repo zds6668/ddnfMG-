@@ -24,4 +24,14 @@
         inner join d_taiwan.accounts as b on a.m_id = b.uid
         WHERE a.login_status = 1
     </select>
+
+    <!--充值D币-->
+    <update id="rechargeDB" parameterType="java.lang.Integer">
+        update taiwan_billing.cash_cera set cera=#{cera} where account = #{uid}
+    </update>
+
+    <!--充值D点-->
+    <update id="rechargeDD" parameterType="java.lang.Integer">
+        update taiwan_billing.cash_cera_point set cera_point=#{cera_point} where account = #{uid}
+    </update>
 </mapper>

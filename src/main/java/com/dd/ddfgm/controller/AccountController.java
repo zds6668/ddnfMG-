@@ -66,4 +66,22 @@ public class AccountController {
     public Role getRole() {
         return accountService.getRole("jiangju");
     }
+
+    @RequestMapping("/db")
+    public Integer rechargeDB(@RequestParam(value = "uid") Integer uid,
+                              @RequestParam(value = "cera") Integer cera,
+                                       HttpServletRequest request,
+                                       Map<String, Object> map) {
+        Integer result = accountService.rechargeDB(uid, cera);
+        return result;
+    }
+
+    @RequestMapping("/dd")
+    public Integer rechargeDD(@RequestParam(value = "uid") Integer uid,
+                              @RequestParam(value = "cera_point") Integer cera_point,
+                              HttpServletRequest request,
+                              Map<String, Object> map) {
+        Integer result = accountService.rechargeDD(uid, cera_point);
+        return result;
+    }
 }

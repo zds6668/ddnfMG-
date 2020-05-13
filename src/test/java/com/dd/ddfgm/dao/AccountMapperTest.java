@@ -35,12 +35,28 @@ public class AccountMapperTest {
         }
     }
 
-    @Test
     public void getOnlineAccounts() {
         List<OnlineAccount> onlineAccounts = accountMapper.getLoginAccounts();
         for (OnlineAccount account :
                 onlineAccounts) {
             System.out.println(account.getLast_login_date());
         }
+    }
+
+    @Test
+    public void rechargeDB() {
+        Account account = accountMapper.getAccountInfo("111111");
+        Integer db = new Integer(121231);
+        Integer result = accountMapper.rechargeDB(account.getUID(), db);
+        System.out.println(result);
+    }
+
+    @Test
+    public void rechargeDD() {
+        Account account = accountMapper.getAccountInfo("111111");
+
+        Integer dd = new Integer(121231);
+        Integer result = accountMapper.rechargeDD(account.getUID(), dd);
+        System.out.println(result);
     }
 }

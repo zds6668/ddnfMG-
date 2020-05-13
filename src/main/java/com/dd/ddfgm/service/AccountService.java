@@ -14,4 +14,8 @@ public interface AccountService {
     Role getRole(String charac_name);
 
     List<Role> getRoles(Integer uid);
+
+    Integer rechargeDB(Integer uid, Integer cera);
+
+    Integer rechargeDD(Integer uid, Integer cera_point);
 }

@@ -14,5 +14,7 @@ public interface AccountMapper {
 
     List<OnlineAccount> getLoginAccounts();
 
+    Integer rechargeDB(Integer uid, Integer cera);
 
+    Integer rechargeDD(Integer uid, Integer cera_point);
 }

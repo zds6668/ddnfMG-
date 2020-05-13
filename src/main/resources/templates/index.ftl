@@ -91,7 +91,37 @@
                 <h4>D点余额</h4>
                 <ul class="card-actions">
                   <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
+                    <#if status == 0>
+                      <a>
+                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">充值</button>
+                      </a>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">充值D点</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="recipient-name" class="control-label" style="color: darkslateblue">充值账号：</label>
+                                  <input type="text" class="form-control" id="recipient-name" value="${account.getAccountname()}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
+                                  <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                              <button type="button" class="btn btn-primary">充值</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </#if>
                   </li>
                 </ul>
               </div>
@@ -99,7 +129,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>${account.getCera()}</p>
+                  <p>${account.getCera_point()}</p>
                 </#if>
               </div>
             </div>
@@ -112,7 +142,37 @@
                 <h4>D币余额</h4>
                 <ul class="card-actions">
                   <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
+                    <#if status == 0>
+                      <a>
+                        <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">充值</button>
+                      </a>
+                      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="exampleModalLabel2" style="color: #1c1e2f">充值D币</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="recipient-name" class="control-label" style="color: darkslateblue">充值账号：</label>
+                                  <input type="text" class="form-control" id="recipient-name" value="${account.getAccountname()}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
+                                  <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                              <button type="button" class="btn btn-primary">充值</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </#if>
                   </li>
                 </ul>
               </div>
@@ -120,7 +180,7 @@
                 <#if status != 0>
                   <p>查不到...</p>
                 <#else >
-                  <p>${account.getCera_point()}</p>
+                  <p>${account.getCera()}</p>
                 </#if>
               </div>
             </div>

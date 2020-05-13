@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account getAccountInfo(String accountname) {
         Account account = accountMapper.getAccountInfo(accountname);
-        if (account.getQq() == null)
+        if (null != account && account.getQq() == null)
             account.setQq("这逼很神秘,没有留下qq");
         return account;
     }
@@ -48,5 +48,16 @@ public class AccountServiceImpl implements AccountService {
             role.setGameCareer(GameCareer);
         }
         return roles;
+    }
+
+    @Override
+    public Integer rechargeDB(Integer uid, Integer cera) {
+        Integer result = accountMapper.rechargeDB(uid, cera);
+        return result;
+    }
+
+    @Override
+    public Integer rechargeDD(Integer uid, Integer cera_point) {
+        return accountMapper.rechargeDD(uid, cera_point);
     }
 }
