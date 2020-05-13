@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,6 +30,7 @@ public class RoleMapperTest {
         System.out.println(roles.size());
         for (Role role:roles) {
             String job = role.getJob() + "_" +  role.getGrow_type();
+            System.out.println(job);
             System.out.println(EnumUtil.getByCode(job, JobsEnum.class).getGameCareer());
         }
 

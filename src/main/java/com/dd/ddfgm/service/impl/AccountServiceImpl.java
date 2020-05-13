@@ -43,7 +43,8 @@ public class AccountServiceImpl implements AccountService {
     public List<Role> getRoles(Integer uid) {
         ArrayList<Role> roles = (ArrayList<Role>) roleMapper.getRoles(uid);
         for (Role role:roles) {
-            String GameCareer = EnumUtil.getByCode(new StringBuffer(role.getJob()).append("_").append(role.getGrow_type()).toString(), JobsEnum.class).getGameCareer();
+            String job = role.getJob() + "_" +  role.getGrow_type();
+            String GameCareer = EnumUtil.getByCode(job, JobsEnum.class).getGameCareer();
             role.setGameCareer(GameCareer);
         }
         return roles;
