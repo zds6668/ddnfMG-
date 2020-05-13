@@ -167,7 +167,9 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                              <a href="/account/DB?">
                               <button type="button" class="btn btn-primary">充值</button>
+                              </a>
                             </div>
                           </div>
                         </div>
