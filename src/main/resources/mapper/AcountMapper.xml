@@ -17,4 +17,11 @@
             </if>
         </where>
     </select>
+
+    <!--查询所有在线账户-->
+    <select id="getLoginAccounts" resultType="com.dd.ddfgm.entity.OnlineAccount">
+        SELECT a.m_id, date_format(a.last_login_date,'%Y-%c-%d %H:%i:%s') AS last_login_date, a.login_ip, a.m_channel_no, b.accountname  FROM taiwan_login.login_account_3 as a
+        inner join d_taiwan.accounts as b on a.m_id = b.uid
+        WHERE a.login_status = 1
+    </select>
 </mapper>

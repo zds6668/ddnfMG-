@@ -164,10 +164,10 @@
                         <tr>
                           <td>${role.charac_no}</td>
                           <td>${role.charac_name}</td>
-                          <td><span class="label label-warning">${role.job}</span></td>
+                          <td><span class="label label-purple">${role.getGameCareer()}</span></td>
                           <td>
-                            <div class="progress progress-striped progress-sm">
-                              <div class="progress-bar progress-bar-warning" style="width: ${role.lev / 70 * 100}%;">${role.lev}</div>
+                            <div class="progress progress-striped progress-lg progress-bar-striped active">
+                              <div class="progress-bar progress-bar-yellow" style="width: ${role.lev / 70 * 100}%;">${role.lev}</div>
                             </div>
                           </td>
                           <td>${role.getCreate_time()}</td>

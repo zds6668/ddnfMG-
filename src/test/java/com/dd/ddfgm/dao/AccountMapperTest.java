@@ -1,6 +1,7 @@
 package com.dd.ddfgm.dao;
 
 import com.dd.ddfgm.entity.Account;
+import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.service.AccountService;
@@ -22,17 +23,24 @@ public class AccountMapperTest {
     AccountService accountService;
 
 
-    @Test
     public void getAccountNum() {
         System.out.println(accountMapper.getAccountNum());
     }
 
-    @Test
     public void getAccountInfo() {
         List<Role> roles = accountService.getRoles(1);
         for (Role role :
                 roles) {
             System.out.println(role.getGameCareer());
+        }
+    }
+
+    @Test
+    public void getOnlineAccounts() {
+        List<OnlineAccount> onlineAccounts = accountMapper.getLoginAccounts();
+        for (OnlineAccount account :
+                onlineAccounts) {
+            System.out.println(account.getLast_login_date());
         }
     }
 }
