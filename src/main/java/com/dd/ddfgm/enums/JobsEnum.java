@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum JobsEnum implements JobEnum{
-    HEIANWUSHI("9", "黑暗武士"),
+    HEIANWUSHI("9_0", "黑暗武士"),
     GUIJIANSHI("0_0", "鬼剑士 (未转职)"),
     GUIJIANSHIZHUANZHI("0_1", "鬼剑士 (已转职)"),
     KUANGZHANSHI("0_19", "鬼剑士 (狱血魔神)"),

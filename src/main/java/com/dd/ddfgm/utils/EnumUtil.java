@@ -2,6 +2,7 @@ package com.dd.ddfgm.utils;
 
 import com.dd.ddfgm.enums.CodeEnum;
 import com.dd.ddfgm.enums.JobEnum;
+import com.dd.ddfgm.enums.JobsEnum;
 
 public class EnumUtil {
 
