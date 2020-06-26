@@ -27,48 +27,17 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-lg-3">
-            <div class="card">
-              <div class="card-header bg-primary">
-                <h4>用户名id</h4>
-                <ul class="card-actions">
-                  <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <#if status != 0>
-                  <p>查不到...</p>
-                <#else >
-                  <p>${account.getUID()}</p>
-                </#if>
+          <div class="col-sm-2 col-lg-2">
+            <div class="card bg-success">
+              <div class="card-body clearfix">
+                <div class="pull-right">
+                  <p class="h6 text-white m-t-0">在线玩家数量</p>
+                  <p class="h3 text-white m-b-0">${loginAccountNum}</p>
+                </div>
+                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
               </div>
             </div>
           </div>
-          <!-- .col-sm-6 -->
-          <div class="col-sm-6 col-lg-3">
-            <div class="card">
-              <div class="card-header bg-success">
-                <h4>qq</h4>
-                <ul class="card-actions">
-                  <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <#if status != 0>
-                  <p>查不到...</p>
-                <#else >
-                  <p>${account.getQq()}</p>
-                </#if>
-              </div>
-            </div>
-          </div>
-          <!-- .col-sm-6 -->
-        </div>
-        <div class="row">
           <div class="col-md-2">
             <div class="card">
               <div class="card-header"><h4>查询账号信息</h4></div>
@@ -84,8 +53,49 @@
               </div>
             </div>
           </div>
-
-          <div class="col-sm-6 col-lg-3">
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-lg-3" style="width: 15%">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <h4>用户名id</h4>
+                <ul class="card-actions">
+                  <li>
+                    <button type="button"><i class="mdi mdi-more"></i></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <#if status != 0>
+                  <p>还没查呢...</p>
+                <#else >
+                  <p>${account.getUID()}</p>
+                </#if>
+              </div>
+            </div>
+          </div>
+          <!-- .col-sm-6 -->
+          <div class="col-sm-6 col-lg-3" style="width: 15%">
+            <div class="card">
+              <div class="card-header bg-success">
+                <h4>qq</h4>
+                <ul class="card-actions">
+                  <li>
+                    <button type="button"><i class="mdi mdi-more"></i></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <#if status != 0>
+                  <p>还没查呢...</p>
+                <#else >
+                  <p>${account.getQq()}</p>
+                </#if>
+              </div>
+            </div>
+          </div>
+          <!-- .col-sm-6 -->
+          <div class="col-sm-6 col-lg-3" style="width: 15%" >
             <div class="card">
               <div class="card-header bg-info">
                 <h4>D点余额</h4>
@@ -93,7 +103,7 @@
                   <li>
                     <#if status == 0>
                       <a>
-                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">充值</button>
+                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="width: 100%">充值</button>
                       </a>
                       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                         <div class="modal-dialog" role="document">
@@ -116,7 +126,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                              <button type="button" class="btn btn-primary">充值</button>
+                              <button type="button" class="btn btn-primary" id="ddbutton">充值</button>
                             </div>
                           </div>
                         </div>
@@ -127,7 +137,7 @@
               </div>
               <div class="card-body">
                 <#if status != 0>
-                  <p>查不到...</p>
+                  <p>还没查呢...</p>
                 <#else >
                   <p>${account.getCera_point()}</p>
                 </#if>
@@ -135,8 +145,7 @@
             </div>
           </div>
           <!-- .col-sm-6 -->
-
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-3" style="width: 15%" >
             <div class="card">
               <div class="card-header bg-warning">
                 <h4>D币余额</h4>
@@ -144,7 +153,7 @@
                   <li>
                     <#if status == 0>
                       <a>
-                        <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">充值</button>
+                        <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" style="width: 100%">充值</button>
                       </a>
                       <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
                         <div class="modal-dialog" role="document">
@@ -180,7 +189,7 @@
               </div>
               <div class="card-body">
                 <#if status != 0>
-                  <p>查不到...</p>
+                  <p>还没查呢...</p>
                 <#else >
                   <p>${account.getCera()}</p>
                 </#if>

@@ -11,11 +11,13 @@ public interface AccountService {
 
     Integer getAccountNum();
 
+    Integer getLoginAccounts();
+
     Role getRole(String charac_name);
 
     List<Role> getRoles(Integer uid);
 
-    Integer rechargeDB(Integer uid, Integer cera);
+    Integer rechargeDB(String accountname, Integer cera);
 
-    Integer rechargeDD(Integer uid, Integer cera_point);
+    Integer rechargeDD(String accountname, Integer cera_point);
 }

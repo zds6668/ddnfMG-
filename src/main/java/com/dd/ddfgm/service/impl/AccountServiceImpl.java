@@ -35,6 +35,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Integer getLoginAccounts() {
+        return accountMapper.getLoginAccounts().size();
+    }
+
+    @Override
     public Role getRole(String charac_name) {
         return roleMapper.getRole(charac_name);
     }
@@ -51,13 +56,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Integer rechargeDB(Integer uid, Integer cera) {
-        Integer result = accountMapper.rechargeDB(uid, cera);
+    public Integer rechargeDB(String accountname, Integer cera) {
+        Account account = accountMapper.getAccountInfo(accountname);
+        if (null == account)
+            return 0;
+        int nowCera = account.getCera();
+        Integer result = accountMapper.rechargeDB(account.getUID(), nowCera + cera);
         return result;
     }
 
     @Override
-    public Integer rechargeDD(Integer uid, Integer cera_point) {
-        return accountMapper.rechargeDD(uid, cera_point);
+    public Integer rechargeDD(String accountname, Integer cera_point) {
+        Account account = accountMapper.getAccountInfo(accountname);
+        if (null == account)
+            return 0;
+        int nowCeraPoint = account.getCera_point();
+        return accountMapper.rechargeDD(account.getUID(), cera_point + nowCeraPoint);
     }
 }

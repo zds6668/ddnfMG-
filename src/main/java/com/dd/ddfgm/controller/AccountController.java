@@ -28,12 +28,12 @@ public class AccountController {
     }
 
     @RequestMapping("/info")
-    @ResponseBody
     public ModelAndView getAccountInfo(@RequestParam(value = "accountname", defaultValue = "") String accountname,
-                                  HttpServletRequest request,
-                                  Map<String, Object> map) {
+                                       Map<String, Object> map) {
         Integer accountNum = accountService.getAccountNum();
+        Integer loginAccountNum = accountService.getLoginAccounts();
         map.put("accountNum", accountNum);
+        map.put("loginAccountNum", loginAccountNum);
         Account account;
         if ("".equalsIgnoreCase(accountname)){
             map.put("status", operatStatus.FAILED.getStatus());
@@ -68,20 +68,20 @@ public class AccountController {
     }
 
     @RequestMapping("/db")
-    public Integer rechargeDB(@RequestParam(value = "uid") Integer uid,
+    public String rechargeDB(@RequestParam(value = "accountname") String accountname,
                               @RequestParam(value = "cera") Integer cera,
                                        HttpServletRequest request,
                                        Map<String, Object> map) {
-        Integer result = accountService.rechargeDB(uid, cera);
-        return result;
+        Integer result = accountService.rechargeDB(accountname, cera);
+        return "redirect:/account/info";
     }
 
     @RequestMapping("/dd")
-    public Integer rechargeDD(@RequestParam(value = "uid") Integer uid,
+    public String rechargeDD(@RequestParam(value = "accountname") String accountname,
                               @RequestParam(value = "cera_point") Integer cera_point,
                               HttpServletRequest request,
                               Map<String, Object> map) {
-        Integer result = accountService.rechargeDD(uid, cera_point);
-        return result;
+        Integer result = accountService.rechargeDD(accountname, cera_point);
+        return "redirect:/account/info";
     }
 }
