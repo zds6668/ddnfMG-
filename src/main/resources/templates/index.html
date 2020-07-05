@@ -4,218 +4,306 @@
 
 <body>
 <div class="lyear-layout-web">
-  <div class="lyear-layout-container">
+    <div class="lyear-layout-container">
 
-    <!--左侧导航-->
-    <div th:replace="~{common/aside}"></div>
-    <!--End 左侧导航-->
-
-    <!--页面主要内容-->
-    <main class="lyear-layout-content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-2 col-lg-2">
-            <div class="card bg-danger">
-              <div class="card-body clearfix">
-                <div class="pull-right">
-                  <p class="h6 text-white m-t-0">全服玩家总数</p>
-                  <p class="h3 text-white m-b-0" th:text="${accountNum}"></p>
+        <!--左侧导航-->
+        <!--左侧导航aside-->
+        <aside class="lyear-layout-sidebar">
+            <!-- logo -->
+            <div id="logo" class="sidebar-header">
+                <a href="index.html"><img src="/images/logo-sidebar.png" title="LightYear" alt="LightYear"/></a>
+            </div>
+            <div class="lyear-layout-sidebar-scroll">
+                <nav class="sidebar-main">
+                    <ul class="nav nav-drawer">
+                        <li class="nav-item active"><a href="index.html"><i class="mdi mdi-home"></i> 后台首页</a></li>
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> UI 元素</a>
+                            <ul class="nav nav-subnav">
+                                <li><a href="lyear_ui_buttons.html">按钮</a></li>
+                                <li><a href="lyear_ui_cards.html">卡片</a></li>
+                                <li><a href="lyear_ui_grid.html">格栅</a></li>
+                                <li><a href="lyear_ui_icons.html">图标</a></li>
+                                <li><a href="lyear_ui_tables.html">表格</a></li>
+                                <li><a href="lyear_ui_modals.html">模态框</a></li>
+                                <li><a href="lyear_ui_tooltips_popover.html">提示 / 弹出框</a></li>
+                                <li><a href="lyear_ui_alerts.html">警告框</a></li>
+                                <li><a href="lyear_ui_pagination.html">分页</a></li>
+                                <li><a href="lyear_ui_progress.html">进度条</a></li>
+                                <li><a href="lyear_ui_tabs.html">标签页</a></li>
+                                <li><a href="lyear_ui_typography.html">排版</a></li>
+                                <li><a href="lyear_ui_other.html">其他</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 表单</a>
+                            <ul class="nav nav-subnav">
+                                <li><a href="lyear_forms_elements.html">基本元素</a></li>
+                                <li><a href="lyear_forms_radio.html">单选框</a></li>
+                                <li><a href="lyear_forms_checkbox.html">复选框</a></li>
+                                <li><a href="lyear_forms_switch.html">开关</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 示例页面</a>
+                            <ul class="nav nav-subnav">
+                                <li><a href="lyear_pages_doc.html">文档列表</a></li>
+                                <li><a href="lyear_pages_gallery.html">图库列表</a></li>
+                                <li><a href="lyear_pages_config.html">网站配置</a></li>
+                                <li><a href="lyear_pages_rabc.html">设置权限</a></li>
+                                <li><a href="lyear_pages_add_doc.html">新增文档</a></li>
+                                <li><a href="lyear_pages_login.html">登录页面</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-language-javascript"></i> JS 插件</a>
+                            <ul class="nav nav-subnav">
+                                <li><a href="lyear_js_datepicker.html">日期选取器</a></li>
+                                <li><a href="lyear_js_sliders.html">滑块</a></li>
+                                <li><a href="lyear_js_colorpicker.html">选色器</a></li>
+                                <li><a href="lyear_js_chartjs.html">Chart.js</a></li>
+                                <li><a href="lyear_js_jconfirm.html">对话框</a></li>
+                                <li><a href="lyear_js_tags_input.html">标签插件</a></li>
+                                <li><a href="lyear_js_notify.html">通知消息</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-has-subnav">
+                            <a href="javascript:void(0)"><i class="mdi mdi-menu"></i> 多级菜单</a>
+                            <ul class="nav nav-subnav">
+                                <li><a href="#!">一级菜单</a></li>
+                                <li class="nav-item nav-item-has-subnav">
+                                    <a href="#!">一级菜单</a>
+                                    <ul class="nav nav-subnav">
+                                        <li><a href="#!">二级菜单</a></li>
+                                        <li class="nav-item nav-item-has-subnav">
+                                            <a href="#!">二级菜单</a>
+                                            <ul class="nav nav-subnav">
+                                                <li><a href="#!">三级菜单</a></li>
+                                                <li><a href="#!">三级菜单</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#!">一级菜单</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="sidebar-footer">
+                    <p class="copyright">Copyright &copy; 2019. <a target="_blank"
+                                                                   href="http://lyear.itshubao.com">IT书包</a> All rights
+                        reserved.</p>
                 </div>
-                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
-              </div>
             </div>
-          </div>
-          <div class="col-sm-2 col-lg-2">
-            <div class="card bg-success">
-              <div class="card-body clearfix">
-                <div class="pull-right">
-                  <p class="h6 text-white m-t-0">在线玩家数量</p>
-                  <p class="h3 text-white m-b-0" th:text="${loginAccountNum}"></p>
-                </div>
-                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="card">
-              <div class="card-body">
-                <form action="/account/info" method="post">
-                  <div class="form-group">
-                    <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.." style="display:inline-block;width: 80%" th:value="${status == 0 ? account.getAccountname() :''}">
-                    <button class="btn btn-primary" type="submit">查询</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-lg-3" style="width: 15%">
-            <div class="card">
-              <div class="card-header bg-primary">
-                <h4>用户名id</h4>
-                <ul class="card-actions">
-                  <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p th:text="${status == 0 ? account.getUID() :'查一下看看'}"></p>
-              </div>
-            </div>
-          </div>
-          <!-- .col-sm-6 -->
-          <div class="col-sm-6 col-lg-3" style="width: 15%">
-            <div class="card">
-              <div class="card-header bg-success">
-                <h4>qq</h4>
-                <ul class="card-actions">
-                  <li>
-                    <button type="button"><i class="mdi mdi-more"></i></button>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p th:text="${status == 0 ? account.getQq() :'查一下看看'}"></p>
-              </div>
-            </div>
-          </div>
-          <!-- .col-sm-6 -->
-          <div class="col-sm-6 col-lg-3" style="width: 15%" >
-            <div class="card">
-              <div class="card-header bg-info">
-                <h4>D点余额</h4>
-                <ul class="card-actions">
-                  <li>
-                    <a>
-                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="width: 100%">充值</button>
-                    </a>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">充值D点</h4>
-                          </div>
-                          <div class="modal-body">
-                            <form th:action="@{/account/dd}" method="post">
-                              <div class="form-group">
-                                <label for="recipient-name" class="control-label" style="color: #49518b">充值账号：</label>
-                                <input type="text" name="ddname" class="form-control" id="recipient-name2" th:value="${status == 0 ? account.getAccountname():''}">
-                              </div>
-                              <div class="form-group">
-                                <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
-                                <textarea name="ddnum" class="form-control" id="message-text2"></textarea>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="submit" class="btn btn-primary" id="ddbutton">充值</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p th:text="${status == 0 ? account.getCera_point() :'查一下看看'}"></p>
-              </div>
-            </div>
-          </div>
-          <!-- .col-sm-6 -->
-          <div class="col-sm-6 col-lg-3" style="width: 15%" >
-            <div class="card">
-              <div class="card-header bg-warning">
-                <h4>D币余额</h4>
-                <ul class="card-actions">
-                  <li>
-                    <a>
-                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" style="width: 100%">充值</button>
-                    </a>
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel2" style="color: #1c1e2f">充值D币</h4>
-                          </div>
-                          <div class="modal-body">
-                            <form th:action="@{/account/db}" method="post">
-                              <div class="form-group">
-                                <label for="recipient-name" class="control-label" style="color: #34728b">充值账号：</label>
-                                <input name="dbname" type="text" class="form-control" id="recipient-name" th:value="${status == 0 ? account.getAccountname():''}">
-                              </div>
-                              <div class="form-group">
-                                <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
-                                <textarea name="dbnum" class="form-control" id="message-text"></textarea>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="submit" class="btn btn-primary">充值</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p th:text="${status == 0 ? account.getCera() :'查一下看看'}"></p>
-              </div>
-            </div>
-          </div>
-          <!-- .col-sm-6 -->
-        </div>
+        </aside>
+        <!--End 左侧导航aside-->
 
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-header">
-                <h4>账号角色信息</h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-hover">
+        <!--头部信息aside-->
+        <header class="lyear-layout-header">
+
+            <nav class="navbar navbar-default">
+                <div class="topbar">
+
+                    <div class="topbar-left">
+                        <div class="lyear-aside-toggler">
+                            <span class="lyear-toggler-bar"></span>
+                            <span class="lyear-toggler-bar"></span>
+                            <span class="lyear-toggler-bar"></span>
+                        </div>
+                        <span class="navbar-page-title"> 欢迎勇士 </span>
+                        <span th:text="'全服玩家总数:' + ${accountNum}" style="color: #1cb08f;margin:7px"></span>
+                        <span th:text="'在线玩家数量:' + ${loginAccountNum}" style="color: #e60000;margin:7px"></span>
+                    </div>
+
+                    <ul class="topbar-right">
+                        <li class="dropdown dropdown-profile">
+                            <a href="javascript:void(0)" data-toggle="dropdown">
+                                <img class="img-avatar img-avatar-48 m-r-10" src="/images/users/avatar.jpg" alt="笔下光年"/>
+                                <span>笔下光年 <span class="caret"></span></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="lyear_pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a></li>
+                                <li><a href="lyear_pages_edit_pwd.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a></li>
+                                <li class="divider"></li>
+                                <li><a href="lyear_pages_login.html"><i class="mdi mdi-logout-variant"></i> 退出登录</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+        </header>
+        <!--End 头部信息aside-->
+        <!--End 左侧导航-->
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="row" style="margin: 20px">
+                <table class="table" style="width: 25%">
                     <thead>
-                    <tr>
-                      <th style="width: 10%">角色id</th>
-                      <th style="width: 15%">角色名</th>
-                      <th style="width: 10%">职业</th>
-                      <th>等级(70满级)</th>
-                      <th>角色创建时间</th>
-                    </tr>
+                    <!--输入账号查询-->
+                    <form action="/account/info" method="post">
+                        <div class="form-group" style="width: 20%">
+                            <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.."
+                                   style="display:inline-block;width: 80%"
+                                   th:value="${status == 0 ? account.getAccountname() :''}">
+                            <button class="btn btn-primary" type="submit">查询</button>
+                        </div>
+                    </form>
                     </thead>
                     <tbody>
-                    <tr th:each="role:${roles}">
-                      <td th:text="${role.getCharac_no()}"></td>
-                      <td th:text="${role.getCharac_name()}"></td>
-                      <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span></td>
-                      <td>
-                        <div class="progress progress-striped progress-lg progress-bar-striped active">
-                          <div class="progress-bar progress-bar-yellow" style="width: 100%" th:text="${role.lev}"></div>
-                        </div>
-                      </td>
-                      <td th:text="${role.getCreate_time()}"></td>
+                    <tr class="active">
+                        <th scope="row">用户名id</th>
+                        <td th:text="${status == 0 ? account.getUID() :'查一下看看'}"></td>
+                    </tr>
+                    <tr class="active">
+                        <th scope="row">QQ</th>
+                        <td th:text="${status == 0 ? account.getQq() :'查一下看看'}"></td>
+                    </tr>
+                    <tr class="success">
+                        <th scope="row" style="width: 40%">D点余额</th>
+                        <td>
+                            <button th:if="${status == 0}" style="background-color: #423ca8" type="button"
+                                    class="btn btn-dark btn-w-md" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@mdo"
+                                    th:text="${status == 0 ? account.getCera_point() :''}">
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">
+                                                充值D点</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/account/dd}" method="post">
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="control-label"
+                                                           style="color: #49518b">充值账号：</label>
+                                                    <input type="text" name="ddname" class="form-control"
+                                                           id="recipient-name2"
+                                                           th:value="${status == 0 ? account.getAccountname():''}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="control-label"
+                                                           style="color: #da4453">充值数量：</label>
+                                                    <textarea name="ddnum" class="form-control"
+                                                              id="message-text2"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        关闭
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary" id="ddbutton">充值
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <th scope="row">D币余额</th>
+                        <td>
+                            <button th:if="${status == 0}" style="background-color: #423ca8" type="button"
+                                    class="btn btn-dark btn-w-md" data-toggle="modal"
+                                    data-target="#exampleModal2" data-whatever="@mdo"
+                                    th:text="${status == 0 ? account.getCera() :''}">
+                            </button>
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel2">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="exampleModalLabel2"
+                                                style="color: #1c1e2f">充值D币</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/account/db}" method="post">
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="control-label"
+                                                           style="color: #34728b">充值账号：</label>
+                                                    <input name="dbname" type="text" class="form-control"
+                                                           id="recipient-name"
+                                                           th:value="${status == 0 ? account.getAccountname():''}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="control-label"
+                                                           style="color: #da4453">充值数量：</label>
+                                                    <textarea name="dbnum" class="form-control"
+                                                              id="message-text"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">关闭
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">充值</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
-                  </table>
-                </div>
-              </div>
+                </table>
             </div>
-          </div>
 
-        </div>
-
-      </div>
-
-    </main>
-    <!--End 页面主要内容-->
-  </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>账号角色信息</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10%">角色id</th>
+                                        <th style="width: 15%">角色名</th>
+                                        <th style="width: 10%">职业</th>
+                                        <th>等级(70满级)</th>
+                                        <th>角色创建时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="role:${roles}">
+                                        <td th:text="${role.getCharac_no()}"></td>
+                                        <td th:text="${role.getCharac_name()}"></td>
+                                        <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span>
+                                        </td>
+                                        <td>
+                                            <div class="progress progress-striped progress-lg progress-bar-striped active">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 100%"
+                                                     th:text="${role.lev}"></div>
+                                            </div>
+                                        </td>
+                                        <td th:text="${role.getCreate_time()}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--End 页面主要内容-->
+    </div>
 </div>
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
