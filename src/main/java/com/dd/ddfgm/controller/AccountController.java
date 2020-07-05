@@ -66,8 +66,8 @@ public class AccountController {
     }
 
     @PostMapping("/db")
-    public String rechargeDB(@RequestParam(value = "accountname") String accountname,
-                              @RequestParam(value = "cera") Integer cera,
+    public String rechargeDB(@RequestParam(value = "dbname") String accountname,
+                              @RequestParam(value = "dbnum") Integer cera,
                                        HttpServletRequest request,
                                        Map<String, Object> map) {
         Integer result = accountService.rechargeDB(accountname, cera);
