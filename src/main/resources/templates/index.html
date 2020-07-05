@@ -4,24 +4,22 @@
   
 <body>
 <div class="lyear-layout-web">
-  <div class="lyear-layout-container" th:insert="~{common/aside}">
-    <!--左侧导航-->
+  <div class="lyear-layout-container">
 
+    <!--左侧导航-->
+    <div th:replace="~{common/aside}"></div>
     <!--End 左侧导航-->
 
-    
     <!--页面主要内容-->
     <main class="lyear-layout-content">
-      
       <div class="container-fluid">
-        
         <div class="row">
           <div class="col-sm-2 col-lg-2">
             <div class="card bg-danger">
               <div class="card-body clearfix">
                 <div class="pull-right">
                   <p class="h6 text-white m-t-0">全服玩家总数</p>
-                  <p class="h3 text-white m-b-0">${accountNum}</p>
+                  <p class="h3 text-white m-b-0" th:text="${accountNum}"></p>
                 </div>
                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
               </div>
@@ -32,7 +30,7 @@
               <div class="card-body clearfix">
                 <div class="pull-right">
                   <p class="h6 text-white m-t-0">在线玩家数量</p>
-                  <p class="h3 text-white m-b-0">${loginAccountNum}</p>
+                  <p class="h3 text-white m-b-0" th:text="${loginAccountNum}"></p>
                 </div>
                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
               </div>
@@ -40,13 +38,10 @@
           </div>
           <div class="col-md-2">
             <div class="card">
-              <div class="card-header"><h4>查询账号信息</h4></div>
               <div class="card-body">
                 <form action="/account/info" method="post">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号..">
-                  </div>
-                  <div class="form-group">
+                    <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.." style="display:inline-block;width: 80%" th:value="${status == 0 ? account.getAccountname() :''}">
                     <button class="btn btn-primary" type="submit">查询</button>
                   </div>
                 </form>
@@ -66,11 +61,7 @@
                 </ul>
               </div>
               <div class="card-body">
-                <th:if status != 0>
-                  <p>还没查呢...</p>
-                <#else >
-                  <p>${account.getUID()}</p>
-                </#if>
+                  <p th:text="${status == 0 ? account.getUID() :'查一下看看'}"></p>
               </div>
             </div>
           </div>
@@ -86,11 +77,7 @@
                 </ul>
               </div>
               <div class="card-body">
-                <#if status != 0>
-                  <p>还没查呢...</p>
-                <#else >
-                  <p>${account.getQq()}</p>
-                </#if>
+                <p th:text="${status == 0 ? account.getQq() :'查一下看看'}"></p>
               </div>
             </div>
           </div>
@@ -101,7 +88,6 @@
                 <h4>D点余额</h4>
                 <ul class="card-actions">
                   <li>
-                    <#if status == 0>
                       <a>
                       <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="width: 100%">充值</button>
                       </a>
@@ -116,11 +102,11 @@
                               <form>
                                 <div class="form-group">
                                   <label for="recipient-name" class="control-label" style="color: darkslateblue">充值账号：</label>
-                                  <input type="text" class="form-control" id="recipient-name" value="${account.getAccountname()}">
+                                  <input type="text" class="form-control" id="recipient-name2" value="${account.getAccountname()}">
                                 </div>
                                 <div class="form-group">
                                   <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
-                                  <textarea class="form-control" id="message-text"></textarea>
+                                  <textarea class="form-control" id="message-text2"></textarea>
                                 </div>
                               </form>
                             </div>
@@ -131,16 +117,11 @@
                           </div>
                         </div>
                       </div>
-                    </#if>
                   </li>
                 </ul>
               </div>
               <div class="card-body">
-                <#if status != 0>
-                  <p>还没查呢...</p>
-                <#else >
-                  <p>${account.getCera_point()}</p>
-                </#if>
+                <p th:text="${status == 0 ? account.getCera_point() :'查一下看看'}"></p>
               </div>
             </div>
           </div>
@@ -151,7 +132,6 @@
                 <h4>D币余额</h4>
                 <ul class="card-actions">
                   <li>
-                    <#if status == 0>
                       <a>
                         <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" style="width: 100%">充值</button>
                       </a>
@@ -183,16 +163,11 @@
                           </div>
                         </div>
                       </div>
-                    </#if>
                   </li>
                 </ul>
               </div>
               <div class="card-body">
-                <#if status != 0>
-                  <p>还没查呢...</p>
-                <#else >
-                  <p>${account.getCera()}</p>
-                </#if>
+                <p th:text="${status == 0 ? account.getCera() :'查一下看看'}"></p>
               </div>
             </div>
           </div>
@@ -219,32 +194,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <#if !roles??>
-                      <tr>
-                        <td>查下你的角色吧</td>
-                        <td>..</td>
-                        <td><span class="label label-warning">..</span></td>
+                      <tr th:each="role:${roles}">
+                        <td th:text="${role.getCharac_no()}"></td>
+                        <td th:text="${role.getCharac_name()}"></td>
+                        <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span></td>
                         <td>
-                          <div class="progress progress-striped progress-sm">
-                            <div class="progress-bar progress-bar-warning" style="width: 0;">..</div>
+                          <div class="progress progress-striped progress-lg progress-bar-striped active">
+                            <div class="progress-bar progress-bar-yellow" style="width: 100%" th:text="${role.lev}"></div>
                           </div>
                         </td>
+                        <td th:text="${role.getCreate_time()}"></td>
                       </tr>
-                    <#else >
-                      <#list roles as role>
-                        <tr>
-                          <td>${role.charac_no}</td>
-                          <td>${role.charac_name}</td>
-                          <td><span class="label label-purple">${role.getGameCareer()}</span></td>
-                          <td>
-                            <div class="progress progress-striped progress-lg progress-bar-striped active">
-                              <div class="progress-bar progress-bar-yellow" style="width: ${role.lev / 70 * 100}%;">${role.lev}</div>
-                            </div>
-                          </td>
-                          <td>${role.getCreate_time()}</td>
-                        </tr>
-                      </#list>
-                    </#if>
                     </tbody>
                   </table>
                 </div>

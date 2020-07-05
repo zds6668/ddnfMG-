@@ -36,13 +36,11 @@ public class AccountController {
         Account account;
         if ("".equalsIgnoreCase(accountname)){
             map.put("status", operatStatus.FAILED.getStatus());
-            map.put("account", null);
         }
         else {
             account = accountService.getAccountInfo(accountname);
             if (account == null) {
                 map.put("status", operatStatus.FAILED.getStatus());
-                map.put("account", null);
             } else {
                 Integer uid = account.getUID();
                 List<Role> roles = accountService.getRoles(uid);
@@ -51,7 +49,7 @@ public class AccountController {
                 map.put("account", account);
             }
         }
-        return new ModelAndView("index.html", map);
+        return new ModelAndView("index", map);
     }
 
     @RequestMapping("/getroles")
