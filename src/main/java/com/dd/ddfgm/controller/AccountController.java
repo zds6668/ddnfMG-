@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +51,7 @@ public class AccountController {
                 map.put("account", account);
             }
         }
-        return new ModelAndView("/index", map);
+        return new ModelAndView("index.html", map);
     }
 
     @RequestMapping("/getroles")

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh">
-<#include "common/head.ftl">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/head}"></head>
   
 <body>
 <div class="lyear-layout-web">
-  <div class="lyear-layout-container">
+  <div class="lyear-layout-container" th:insert="~{common/aside}">
     <!--左侧导航-->
-    <#include "common/aside.ftl">
+
     <!--End 左侧导航-->
 
     
@@ -66,7 +66,7 @@
                 </ul>
               </div>
               <div class="card-body">
-                <#if status != 0>
+                <th:if status != 0>
                   <p>还没查呢...</p>
                 <#else >
                   <p>${account.getUID()}</p>
