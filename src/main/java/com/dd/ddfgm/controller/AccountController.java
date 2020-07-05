@@ -6,6 +6,7 @@ import com.dd.ddfgm.enums.operatStatus;
 import com.dd.ddfgm.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,7 +65,7 @@ public class AccountController {
         return accountService.getRole("jiangju");
     }
 
-    @RequestMapping("/db")
+    @PostMapping("/db")
     public String rechargeDB(@RequestParam(value = "accountname") String accountname,
                               @RequestParam(value = "cera") Integer cera,
                                        HttpServletRequest request,
@@ -73,9 +74,9 @@ public class AccountController {
         return "redirect:/account/info";
     }
 
-    @RequestMapping("/dd")
-    public String rechargeDD(@RequestParam(value = "accountname") String accountname,
-                              @RequestParam(value = "cera_point") Integer cera_point,
+    @PostMapping("/dd")
+    public String rechargeDD(@RequestParam(value = "ddname") String accountname,
+                              @RequestParam(value = "ddnum") Integer cera_point,
                               HttpServletRequest request,
                               Map<String, Object> map) {
         Integer result = accountService.rechargeDD(accountname, cera_point);

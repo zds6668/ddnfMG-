@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{common/head}"></head>
-  
+
 <body>
 <div class="lyear-layout-web">
   <div class="lyear-layout-container">
@@ -61,7 +61,7 @@
                 </ul>
               </div>
               <div class="card-body">
-                  <p th:text="${status == 0 ? account.getUID() :'查一下看看'}"></p>
+                <p th:text="${status == 0 ? account.getUID() :'查一下看看'}"></p>
               </div>
             </div>
           </div>
@@ -88,35 +88,35 @@
                 <h4>D点余额</h4>
                 <ul class="card-actions">
                   <li>
-                      <a>
+                    <a>
                       <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="width: 100%">充值</button>
-                      </a>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">充值D点</h4>
-                            </div>
-                            <div class="modal-body">
-                              <form>
-                                <div class="form-group">
-                                  <label for="recipient-name" class="control-label" style="color: darkslateblue">充值账号：</label>
-                                  <input type="text" class="form-control" id="recipient-name2" value="${account.getAccountname()}">
-                                </div>
-                                <div class="form-group">
-                                  <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
-                                  <textarea class="form-control" id="message-text2"></textarea>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                              <button type="button" class="btn btn-primary" id="ddbutton">充值</button>
-                            </div>
+                    </a>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">充值D点</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form th:action="@{/account/dd}" method="post">
+                              <div class="form-group">
+                                <label for="recipient-name" class="control-label" style="color: #49518b">充值账号：</label>
+                                <input type="text" name="ddname" class="form-control" id="recipient-name2" th:value="${status == 0 ? account.getAccountname():''}">
+                              </div>
+                              <div class="form-group">
+                                <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
+                                <textarea name="ddnum" class="form-control" id="message-text2"></textarea>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary" id="ddbutton">充值</button>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -132,37 +132,37 @@
                 <h4>D币余额</h4>
                 <ul class="card-actions">
                   <li>
-                      <a>
-                        <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" style="width: 100%">充值</button>
-                      </a>
-                      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title" id="exampleModalLabel2" style="color: #1c1e2f">充值D币</h4>
-                            </div>
-                            <div class="modal-body">
-                              <form>
-                                <div class="form-group">
-                                  <label for="recipient-name" class="control-label" style="color: darkslateblue">充值账号：</label>
-                                  <input type="text" class="form-control" id="recipient-name" value="${account.getAccountname()}">
-                                </div>
-                                <div class="form-group">
-                                  <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
-                                  <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                              <a href="/account/db?uid=1&cera=123">
+                    <a>
+                      <button type="button" class="btn btn-dark btn-w-md" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" style="width: 100%">充值</button>
+                    </a>
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel2" style="color: #1c1e2f">充值D币</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="recipient-name" class="control-label" style="color: #34728b">充值账号：</label>
+                                <input type="text" class="form-control" id="recipient-name" th:value="${status == 0 ? account.getAccountname():''}">
+                              </div>
+                              <div class="form-group">
+                                <label for="message-text" class="control-label" style="color: #da4453">充值数量：</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <a href="/account/db?uid=1&cera=123">
                               <button type="button" class="btn btn-primary">充值</button>
-                              </a>
-                            </div>
+                            </a>
                           </div>
                         </div>
                       </div>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -175,7 +175,6 @@
         </div>
 
         <div class="row">
-          
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
@@ -185,26 +184,26 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead>
-                      <tr>
-                        <th style="width: 10%">角色id</th>
-                        <th style="width: 15%">角色名</th>
-                        <th style="width: 10%">职业</th>
-                        <th>等级(70满级)</th>
-                        <th>角色创建时间</th>
-                      </tr>
+                    <tr>
+                      <th style="width: 10%">角色id</th>
+                      <th style="width: 15%">角色名</th>
+                      <th style="width: 10%">职业</th>
+                      <th>等级(70满级)</th>
+                      <th>角色创建时间</th>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr th:each="role:${roles}">
-                        <td th:text="${role.getCharac_no()}"></td>
-                        <td th:text="${role.getCharac_name()}"></td>
-                        <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span></td>
-                        <td>
-                          <div class="progress progress-striped progress-lg progress-bar-striped active">
-                            <div class="progress-bar progress-bar-yellow" style="width: 100%" th:text="${role.lev}"></div>
-                          </div>
-                        </td>
-                        <td th:text="${role.getCreate_time()}"></td>
-                      </tr>
+                    <tr th:each="role:${roles}">
+                      <td th:text="${role.getCharac_no()}"></td>
+                      <td th:text="${role.getCharac_name()}"></td>
+                      <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span></td>
+                      <td>
+                        <div class="progress progress-striped progress-lg progress-bar-striped active">
+                          <div class="progress-bar progress-bar-yellow" style="width: 100%" th:text="${role.lev}"></div>
+                        </div>
+                      </td>
+                      <td th:text="${role.getCreate_time()}"></td>
+                    </tr>
                     </tbody>
                   </table>
                 </div>
@@ -213,9 +212,9 @@
           </div>
 
         </div>
-        
+
       </div>
-      
+
     </main>
     <!--End 页面主要内容-->
   </div>
