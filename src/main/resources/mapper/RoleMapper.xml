@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dd.ddfgm.mapper.RoleMapper">
+    <!-- 开启二级缓存（默认参数） -->
+    <cache/>
     <!--查询单个角色信息-->
     <select id="getRole" resultType="com.dd.ddfgm.entity.Role" parameterType="java.lang.String">
         select m_id,charac_no,job,grow_type,lev,convert(unhex(hex(convert(`charac_name` using latin1))) using utf8) as charac_name, date_format(create_time,'%Y-%c-%d %H:%i:%s') AS create_time from taiwan_cain.charac_info
