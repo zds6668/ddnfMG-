@@ -143,11 +143,12 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="row" style="margin: 20px">
-                <table class="table" style="width: 25%">
+                <div  style="width: 25%;float: left">
+                <table class="table">
                     <thead>
                     <!--输入账号查询-->
                     <form action="/account/info" method="post">
-                        <div class="form-group" style="width: 20%">
+                        <div class="form-group">
                             <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.."
                                    style="display:inline-block;width: 80%"
                                    th:value="${status == 0 ? account.getAccountname() :''}">
@@ -259,43 +260,70 @@
                         </td>
                     </tr>
                     </tbody>
+                    <div>
+                        <img src="//game.gtimg.cn/images/dnf/cp/a20200618surprise/elem2.png">
+                    </div>
                 </table>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card" style="width: 60%">
-                        <div class="card-header">
-                            <h4>账号角色信息</h4>
+                </div>
+                <!--角色列表遍历-->
+                <div class="row" style="float: right;width: 75%">
+                    <div class="col-lg-12">
+                        <div class="card" style="width: 60%;float: left">
+                            <div class="card-header">
+                                <h4>账号角色信息</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 7%">角色id</th>
+                                            <th style="width: 7%">角色名</th>
+                                            <th style="width: 7%">职业</th>
+                                            <th style="width: 20%">等级(70满级)</th>
+                                            <th style="width: 20%">角色创建时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="role:${roles}">
+                                            <td th:text="${role.getCharac_no()}"></td>
+                                            <td th:text="${role.getCharac_name()}"></td>
+                                            <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span>
+                                            </td>
+                                            <td>
+                                                <div class="progress progress-striped progress-lg progress-bar-striped active">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 100%"
+                                                         th:text="${role.lev}"></div>
+                                                </div>
+                                            </td>
+                                            <td th:text="${role.getCreate_time()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 7%">角色id</th>
-                                        <th style="width: 7%">角色名</th>
-                                        <th style="width: 7%">职业</th>
-                                        <th style="width: 20%">等级(70满级)</th>
-                                        <th style="width: 20%">角色创建时间</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="role:${roles}">
-                                        <td th:text="${role.getCharac_no()}"></td>
-                                        <td th:text="${role.getCharac_name()}"></td>
-                                        <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span>
-                                        </td>
-                                        <td>
-                                            <div class="progress progress-striped progress-lg progress-bar-striped active">
-                                                <div class="progress-bar progress-bar-yellow" style="width: 100%"
-                                                     th:text="${role.lev}"></div>
-                                            </div>
-                                        </td>
-                                        <td th:text="${role.getCreate_time()}"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                        <div class="cardEmail" style="width: 40%;float: left">
+                            <div class="card-header">
+                                <h4>邮件管理</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 7%">角色id</th>
+                                            <th style="width: 7%">角色名</th>
+                                            <th style="width: 7%">职业</th>
+                                            <th style="width: 20%">等级(70满级)</th>
+                                            <th style="width: 20%">角色创建时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
