@@ -31,8 +31,12 @@ public class CustomUserDetailsService implements UserDetailsService { //自定�
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         //用于添加用户的权限。只要把用户权限添加到authorities 就万事大吉。
-        if (user.getVIP() != null || !"".equals(user.getVIP())) {
+        System.out.println(user.getVIP());
+        if (!"".equals(user.getVIP())) {
             authorities.add(new SimpleGrantedAuthority("VIP"));
+        }
+        else {
+            authorities.add(new SimpleGrantedAuthority("user"));
         }
         return new org.springframework.security.core.userdetails.User(user.getAccountname(),
                 user.getPassword(), authorities);

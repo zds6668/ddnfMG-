@@ -63,5 +63,7 @@ public class AccountMapperTest {
         User user = accountMapper.getUserByName("111111");
         System.out.println(user.getPassword());
         System.out.println(user.getVIP());
+        System.out.println(user.getVIP() == null);
+        System.out.println("".equalsIgnoreCase(user.getVIP()));
     }
 }
