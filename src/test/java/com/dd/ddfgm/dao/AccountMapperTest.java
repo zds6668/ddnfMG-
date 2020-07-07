@@ -3,6 +3,7 @@ package com.dd.ddfgm.dao;
 import com.dd.ddfgm.entity.Account;
 import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
+import com.dd.ddfgm.entity.User;
 import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.service.AccountService;
 import org.junit.Test;
@@ -42,7 +43,6 @@ public class AccountMapperTest {
         }
     }
 
-    @Test
     public void rechargeDB() {
         Account account = accountMapper.getAccountInfo("111111");
         Integer db = new Integer(121231);
@@ -50,12 +50,18 @@ public class AccountMapperTest {
         System.out.println(result);
     }
 
-    @Test
     public void rechargeDD() {
         Account account = accountMapper.getAccountInfo("111111");
 
         Integer dd = new Integer(121231);
         Integer result = accountMapper.rechargeDD(account.getUID(), dd);
         System.out.println(result);
+    }
+
+    @Test
+    public void getUserTest() {
+        User user = accountMapper.getUserByName("111111");
+        System.out.println(user.getPassword());
+        System.out.println(user.getVIP());
     }
 }

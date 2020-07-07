@@ -2,6 +2,7 @@ package com.dd.ddfgm.service.impl;
 
 import com.dd.ddfgm.entity.Account;
 import com.dd.ddfgm.entity.Role;
+import com.dd.ddfgm.entity.User;
 import com.dd.ddfgm.enums.JobsEnum;
 import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.mapper.RoleMapper;
@@ -20,6 +21,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Override
+    public User getUserByName(String accountname) {
+        return accountMapper.getUserByName(accountname);
+    }
 
     @Override
     public Account getAccountInfo(String accountname) {
