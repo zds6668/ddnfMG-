@@ -113,7 +113,7 @@
                         <span class="navbar-page-title"> 欢迎勇士 </span>
                         <span th:text="'全服玩家总数:' + ${accountNum}" style="color: #1cb08f;margin:7px"></span>
                         <span th:text="'在线玩家数量:' + ${loginAccountNum}" style="color: #e60000;margin:7px"></span>
-                        <input id="selectedrole" th:text="${selectedrolename}" style="color: #e60000;margin:7px"></input>
+                        <span class="selectedrole" id="selectedrole" style="color: #1c5a7c;margin:10px"></span>
                     </div>
 
                     <ul class="topbar-right">
@@ -344,9 +344,10 @@
     function roleRefresh(element) {
         var selectedroleno = element.parentNode.parentNode.children[0].innerText;
         var selectedrolename = element.parentNode.parentNode.children[1].innerText;
-        alert(selectedroleno);
-        alert(selectedrolename);
+        var selectedrole = document.getElementById('selectedrole');
+        alert(selectedrole.className);
         // 装载局部刷新返回的页面
+        selectedrole.innerText = '选中角色:' + selectedrolename;
     }
 </script>
 <!--图表插件-->
