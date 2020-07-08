@@ -60,6 +60,7 @@
 <div class="row lyear-wrapper">
     <div class="lyear-login">
         <div class="login-center">
+            <div class="lyear-layout-sidebar-scroll"></div>
             <div class="login-header text-center">
                 <a href="index.html"> <img alt="light year admin" src="images/logo-sidebar.png"> </a>
             </div>
@@ -96,6 +97,8 @@
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<!--消息提示-->
 <script src="js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="js/lightyear.js"></script>
 <script type="text/javascript" src="js/main.min.js"></script>
@@ -134,7 +137,7 @@
             error: function (data) {
                 setTimeout(function () {
                     lightyear.loading('hide');
-                    lightyear.notify('用户名或密码错误~', 'danger');
+                    lightyear.notify('服务器错误请重试~', 'danger');
                 }, 1e3)
             },
             beforeSend: function () {

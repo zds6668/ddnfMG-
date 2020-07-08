@@ -90,8 +90,8 @@
                     </ul>
                 </nav>
                 <div class="sidebar-footer">
-                    <p class="copyright">Copyright &copy; 2019. <a target="_blank"
-                                                                   href="http://lyear.itshubao.com">IT书包</a> All rights
+                    <p class="copyright">Copyright &copy; 2020. <a target="_blank"
+                                                                   href="http://www.kamigou.top/list/SizxF67Pu">我要变强</a> All rights
                         reserved.</p>
                 </div>
             </div>
@@ -113,6 +113,7 @@
                         <span class="navbar-page-title"> 欢迎勇士 </span>
                         <span th:text="'全服玩家总数:' + ${accountNum}" style="color: #1cb08f;margin:7px"></span>
                         <span th:text="'在线玩家数量:' + ${loginAccountNum}" style="color: #e60000;margin:7px"></span>
+                        <input id="selectedrole" th:text="${selectedrolename}" style="color: #e60000;margin:7px"></input>
                     </div>
 
                     <ul class="topbar-right">
@@ -275,18 +276,19 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                        <tr>
+                                        <tr >
                                             <th style="width: 7%">角色id</th>
                                             <th style="width: 7%">角色名</th>
                                             <th style="width: 7%">职业</th>
                                             <th style="width: 20%">等级(70满级)</th>
                                             <th style="width: 20%">角色创建时间</th>
+                                            <th style="width: 7%">选择</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="role:${roles}">
-                                            <td th:text="${role.getCharac_no()}"></td>
-                                            <td th:text="${role.getCharac_name()}"></td>
+                                        <tr th:each="role:${roles}" class="trpa">
+                                            <td id="Charac_no" class="Charac_no" th:text="${role.getCharac_no()}"></td>
+                                            <td id="Charac_name" th:text="${role.getCharac_name()}"></td>
                                             <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span>
                                             </td>
                                             <td>
@@ -296,6 +298,7 @@
                                                 </div>
                                             </td>
                                             <td th:text="${role.getCreate_time()}"></td>
+                                            <td class="patd"><button type="button" class="btn btn-default" onClick="roleRefresh(this)">选中</button></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -337,7 +340,15 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
 <script type="text/javascript" src="/js/main.min.js"></script>
-
+<script type="text/javascript">
+    function roleRefresh(element) {
+        var selectedroleno = element.parentNode.parentNode.children[0].innerText;
+        var selectedrolename = element.parentNode.parentNode.children[1].innerText;
+        alert(selectedroleno);
+        alert(selectedrolename);
+        // 装载局部刷新返回的页面
+    }
+</script>
 <!--图表插件-->
 </body>
 </html>
