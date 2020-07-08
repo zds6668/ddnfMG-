@@ -1,6 +1,7 @@
 package com.dd.ddfgm.config;
 
 import com.dd.ddfgm.service.CustomUserDetailsService;
+import com.dd.ddfgm.Validate.ValidateCodeFilter;
 import com.dd.ddfgm.utils.md5PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,8 +9,19 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by Five on 2020/7/7 1:09
@@ -19,7 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    UserDetailsService customUserService(){ //注册UserDetailsService 的bean
+    UserDetailsService customUserService() { //注册UserDetailsService 的bean
         return new CustomUserDetailsService();
     }
 
@@ -28,16 +40,63 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new md5PasswordEncoder();
     }
 
+    //登入成功
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new AuthenticationSuccessHandler() {
+            /**
+             * 处理登入成功的请求
+             * @param httpServletRequest
+             * @param httpServletResponse
+             * @param authentication
+             * @throws IOException
+             * @throws ServletException
+             */
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                httpServletResponse.setContentType("application/json;charset=utf-8");
+                PrintWriter out = httpServletResponse.getWriter();
+                out.write("{\"status\":\"success\",\"msg\":\"登录成功\"}");
+                out.flush();
+                out.close();
+            }
+        };
+    }
+
+    //登录失败
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new AuthenticationFailureHandler() {
+            /**
+             * 处理登录失败的请求
+             * @param httpServletRequest
+             * @param httpServletResponse
+             * @param e
+             * @throws IOException
+             * @throws ServletException
+             */
+            @Override
+            public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+                httpServletResponse.setContentType("application/json;charset=utf-8");
+                PrintWriter out = httpServletResponse.getWriter();
+                out.write("{\"status\":\"error\",\"msg\":\"登录失败\"}");
+                out.flush();
+                out.close();
+            }
+        };
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.addFilterBefore(new ValidateCodeFilter("/login"),
+                UsernamePasswordAuthenticationFilter.class);
+        //在认证用户名之前认证验证码，如果验证码错误，将不执行用户名和密码的认证
         // TODO 定制请求的授权规则
-        http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/level1/**").hasRole("vip1")
-                .antMatchers("/level2/**").hasRole("vip2")
-                .antMatchers("/level3/**").hasRole("vip3");
+        http.authorizeRequests().antMatchers("/").permitAll();
         // 开启自动配置的登录功能
         // login 请求来到登录页
         // login?error 重定向到这里表示登录失败
+        /* 添加验证码过滤器 */
         http.formLogin()
                 //配置登录form传过来的账号密码
                 .usernameParameter("username")
@@ -46,7 +105,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/toLogin")
                 // 登陆表单提交请求
                 .loginProcessingUrl("/login")
-                .successForwardUrl("/account/info");
+                .successForwardUrl("/account/info")
+                .successHandler(authenticationSuccessHandler())
+                .failureHandler(authenticationFailureHandler());
         //开启自动配置的注销的功能
         http.logout()
                 .logoutSuccessUrl("/toLogin");

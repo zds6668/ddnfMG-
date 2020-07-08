@@ -10441,7 +10441,7 @@ function parseVisibleItems(chart, handler) {
 
 /**
  * Helper function to get the items that intersect the event position
- * @param items {ChartElement[]} elements to filter
+ * @param items {ChartElement[]} elements to Validate
  * @param position {Point} the point to be nearest to
  * @return {ChartElement[]} the nearest items
  */
@@ -13241,7 +13241,7 @@ var exports = module.exports = Element.extend({
 				tooltipItems.push(createTooltipItem(active[i]));
 			}
 
-			// If the user provided a filter function, use it to modify the tooltip items
+			// If the user provided a Validate function, use it to modify the tooltip items
 			if (opts.filter) {
 				tooltipItems = tooltipItems.filter(function(a) {
 					return opts.filter(a, data);
