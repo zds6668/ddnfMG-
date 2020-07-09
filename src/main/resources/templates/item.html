@@ -95,10 +95,10 @@
                                     <ul class="pagination no-border">
                                         总共<a th:text="${page.pages}"/>页|
                                         第<a th:text="${page.getPageNum()}"/>页|
-                                        <a th:href="'/toItem' + @{/(page=1)}" class="f">首页</a>|
-                                        <a th:href="'/toItem' + @{/(page=${page.prePage})}" class="f">上一页</a>|
-                                        <a th:href="'/toItem' + @{/(page=${page.nextPage})}" class="la">下一页</a>|
-                                        <a th:href="'/toItem' + @{/(page=${page.pages})}" class="la">尾页</a>
+                                        <a th:href="@{/toItem(page=0)}" class="f">首页</a>|
+                                        <a th:href="@{/toItem(page=${page.prePage})}" class="f">上一页</a>|
+                                        <a th:href="@{/toItem(page=${page.nextPage})}" class="la">下一页</a>|
+                                        <a th:href="@{/toItem(page=${page.pages})}" class="la">尾页</a>
                                         <input type="hidden" id="first" th:value="${page.getPageNum()}"/>
                                         <input type="hidden" id="last" th:value="${page.pages}"/>
                                     </ul>
