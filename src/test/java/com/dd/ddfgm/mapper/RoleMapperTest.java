@@ -1,5 +1,6 @@
 package com.dd.ddfgm.mapper;
 
+import com.dd.ddfgm.entity.Item;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.enums.JobsEnum;
 import com.dd.ddfgm.utils.EnumUtil;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 
@@ -18,13 +20,17 @@ public class RoleMapperTest {
     @Autowired
     private RoleMapper roleMapper;
 
-    @Test
-    public void getRole() {
-        Role role = roleMapper.getRole("阿斯頓");
-        System.out.println(role.getLev());
-    }
+    @Autowired
+    private ItemsMapper itemsMapper;
 
     @Test
+    public void getRole() throws UnsupportedEncodingException {
+        List<Item> items = itemsMapper.getItems(null, new String("晶体".getBytes("UTF-8"), "ISO-8859-1"));
+        for (Item item : items) {
+            System.out.println(item.getId());
+        }
+    }
+
     public void getRoles() {
         List<Role> roles = roleMapper.getRoles(1);
         System.out.println(roles.size());

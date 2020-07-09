@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dd.ddfgm.mapper.ItemsMapper">
+    <!--根据id查询用户详情-->
+    <select id="getItems" resultType="com.dd.ddfgm.entity.Item">
+        select id, it_no, it_name from mysql.dnf_item_id
+        <where>
+            <if test="it_no!=null and it_no!=''">
+                and it_no = #{it_no}
+            </if>
+            <if test="it_name!=null and it_name!=''">
+                and it_name LIKE concat('%',${it_name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
