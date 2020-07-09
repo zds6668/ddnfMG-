@@ -30,7 +30,7 @@ public class GmToolsController {
 
     @RequestMapping({"/toItem"})
     public ModelAndView getItems(@RequestParam(required = true, defaultValue = "1") Integer page, HttpServletRequest request) {
-        PageHelper.startPage(page, 1000);
+        PageHelper.startPage(page, 4000);
         List<Item> itemList = itemsMapper.getItems(null, null);
         ModelAndView modelAndView = new ModelAndView("item");
         PageInfo<Item> pageInfo = new PageInfo<>(itemList);
