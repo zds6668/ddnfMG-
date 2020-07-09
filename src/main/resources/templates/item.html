@@ -93,27 +93,20 @@
                             <div class="card-body">
                                 <nav>
                                     <ul class="pagination no-border">
-                                        <li class="disabled">
-                                            <a href="#!">
-                                                <span><i class="mdi mdi-chevron-left"></i></span>
-                                            </a>
-                                        </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#!">2</a></li>
-                                        <li><a href="#!">3</a></li>
-                                        <li><a href="#!">4</a></li>
-                                        <li><a href="#!">5</a></li>
-                                        <li>
-                                            <a href="#!">
-                                                <span><i class="mdi mdi-chevron-right"></i></span>
-                                            </a>
-                                        </li>
+                                        总共<a th:text="${page.pages}"/>页|
+                                        第<a th:text="${page.getPageNum()}"/>页|
+                                        <a th:href="'/toItem' + @{/(page=1)}" class="f">首页</a>|
+                                        <a th:href="'/toItem' + @{/(page=${page.prePage})}" class="f">上一页</a>|
+                                        <a th:href="'/toItem' + @{/(page=${page.nextPage})}" class="la">下一页</a>|
+                                        <a th:href="'/toItem' + @{/(page=${page.pages})}" class="la">尾页</a>
+                                        <input type="hidden" id="first" th:value="${page.getPageNum()}"/>
+                                        <input type="hidden" id="last" th:value="${page.pages}"/>
                                     </ul>
                                 </nav>
                                 <hr>
                                 <div class="example-icons">
-                                    <div>
-                                        <i class="mdi mdi-access-point"></i><code>f002</code><span>mdi-access-point</span>
+                                    <div th:each="item:${items}">
+                                        <i class="mdi mdi-access-point"></i><code style="width: 20%" th:text="${item.getIt_no()}"></code><span th:text="${item.getIt_name()}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -133,5 +126,36 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
 <script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        pageNum = $("#first").val();
+        lastPage = $("#last").val();
+        if (lastPage == pageNum) {
+
+            $('.la').removeAttr('href');//去掉a标签中的href属性
+            $('.la').removeAttr('onclick');//去掉a标签中的onclick事件
+        } else {
+            if (pageNum == 1) {
+                $('.f').removeAttr('href');//去掉a标签中的href属性
+                $('.f').removeAttr('onclick');//去掉a标签中的onclick事件
+
+            } else if (pageNum != 1) {
+                $('.f').attr('', 'href');//添加a标签中的href属性
+                $('.f').attr('', 'onclick');//添加a标签中的onclick事件)
+            }
+            $('.la').attr('', 'href');//添加a标签中的href属性
+            $('.la').attr('', 'onclick');//添加a标签中的onclick事件)
+
+        }
+
+        /*if(lastPage==pageNum){
+            $('.l').removeAttr('href');//去掉a标签中的href属性
+            $('.l').removeAttr('onclick');//去掉a标签中的onclick事件
+        }else{
+            $('.l').attr('','href');//添加a标签中的href属性
+            $('.l').attr('','onclick');//添加a标签中的onclick事件)
+        }*/
+    });
+</script>
 </body>
 </html>

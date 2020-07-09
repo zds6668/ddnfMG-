@@ -25,6 +25,7 @@ public class RoleMapperTest {
 
     @Test
     public void getRole() throws UnsupportedEncodingException {
+        System.out.println(new String("晶体".getBytes("UTF-8"), "ISO-8859-1"));
         List<Item> items = itemsMapper.getItems(null, new String("晶体".getBytes("UTF-8"), "ISO-8859-1"));
         for (Item item : items) {
             System.out.println(item.getId());
