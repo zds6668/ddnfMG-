@@ -15,5 +15,5 @@ public interface ActivityMapper {
     List<ActivityInfo> getAllActivityInfo();
 
     Integer deleteActivityLog(Integer log_id);
-    Integer addActivityLog(Integer log_id, Integer event_type, Integer parameter1);
+    Integer addActivityLog(Integer event_type, Integer parameter1);
 }
