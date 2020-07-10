@@ -54,7 +54,18 @@ public class AccountServiceImpl implements AccountService {
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
         }
-        return accountMapper.getLoginAccounts();
+        return onlineAccounts;
+    }
+
+    @Override
+    public List<OnlineAccount> getAllAccounts() {
+        ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getAllAccounts();
+        for (OnlineAccount onlineAccount : onlineAccounts) {
+            String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
+            String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
+            onlineAccount.setGameCareer(GameCareer);
+        }
+        return onlineAccounts;
     }
 
     @Override

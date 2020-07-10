@@ -18,6 +18,8 @@ public interface AccountMapper {
 
     List<OnlineAccount> getLoginAccounts();
 
+    List<OnlineAccount> getAllAccounts();
+
     Integer rechargeDB(Integer uid, Integer cera);
 
     Integer rechargeDD(Integer uid, Integer cera_point);

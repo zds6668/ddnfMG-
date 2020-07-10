@@ -1,6 +1,7 @@
 package com.dd.ddfgm.controller;
 
 import com.dd.ddfgm.entity.Account;
+import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.enums.operatStatus;
 import com.dd.ddfgm.service.AccountService;
@@ -24,9 +25,16 @@ public class RolesController {
 
     @RequestMapping("/all")
     @ResponseBody
-    public List<Role> getAllRoles() {
-        List<Role> roles = accountService.getRoles(null);
-        return roles;
+    public List<OnlineAccount> getAllRoles() {
+        List<OnlineAccount> allAccounts = accountService.getAllAccounts();
+        return allAccounts;
+    }
+
+    @RequestMapping("/online")
+    @ResponseBody
+    public List<OnlineAccount> getOnlineRoles() {
+        List<OnlineAccount> onlineAccounts = accountService.getOnlineAccounts();
+        return onlineAccounts;
     }
 
     @RequestMapping("/info")

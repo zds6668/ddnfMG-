@@ -19,6 +19,8 @@ public interface AccountService {
 
     List<OnlineAccount> getOnlineAccounts();
 
+    List<OnlineAccount> getAllAccounts();
+
     Role getRole(String charac_name);
 
     List<Role> getRoles(Integer uid);
