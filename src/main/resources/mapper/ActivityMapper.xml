@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dd.ddfgm.mapper.ActivityMapper">
+    <!--查出所有开启的活动-->
+    <select id="getAllActivityLog" resultType="com.dd.ddfgm.entity.ActivityLog">
+        SELECT a.log_id,a.event_type,b.event_explain as log_name,a.parameter1 FROM d_taiwan.dnf_event_log as a
+        inner join d_taiwan.dnf_event_info as b on a.event_type = b.event_id
+    </select>
+
+    <!--查出所有可开启的活动-->
+    <select id="getAllActivityInfo" resultType="com.dd.ddfgm.entity.ActivityInfo">
+        SELECT event_id,event_explain from d_taiwan.dnf_event_info
+    </select>
+
+    <!--添加活动-->
+    <insert id="addActivityLog" parameterType="com.dd.ddfgm.entity.ActivityLog">
+        insert into d_taiwan.dnf_event_log (occ_time,event_type,parameter1,parameter2,server_id,event_flag,start_time,end_time)
+        values (0,#{event_type},#{parameter1},0,0,0,0,0)
+    </insert>
+
+    <!--删除活动-->
+    <delete id="deleteActivityLog" parameterType="java.lang.Integer">
+        delete from d_taiwan.dnf_event_log where log_id = #{log_id}
+    </delete>
+
+
+</mapper>
