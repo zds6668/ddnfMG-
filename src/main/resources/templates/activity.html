@@ -197,6 +197,14 @@
                     parameter1.focus();
                     return false;
                 }
+                if (parameter1.val()%100 != 1 || parameter1.val()%100 != 0) {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('请输入1或100的倍数', 'danger');
+                    }, 1e3)
+                    parameter1.focus();
+                    return false;
+                }
             }
         });
     };

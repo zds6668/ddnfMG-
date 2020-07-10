@@ -52,7 +52,10 @@ public class ActivityController {
                               @RequestParam(value = "parameter1") Integer parameter1,
                               HttpServletResponse httpServletResponse) throws IOException {
         Integer result = -1;
-        if (null != event_type && parameter1 != null) {
+        if (parameter1 % 100 != 0 || parameter1 % 100 != 0) {
+            result = -2;
+        }
+        else if (null != event_type && parameter1 != null) {
             result = activityMapper.addActivityLog(event_type, parameter1);
         }
         Map<String, Integer> map = new HashMap<>();
