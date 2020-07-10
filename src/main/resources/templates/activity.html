@@ -133,7 +133,7 @@
                                         <label class="col-xs-12" for="example-select">活动参数</label>
                                         <input class="form-control" type="text" id="example-text-input-info"
                                                name="example-text-input-info" placeholder="1表示开启活动,100即为1倍,200为两倍">
-                                        <button class="btn btn-default" type="submit" style="margin-top: auto"
+                                        <button class="btn btn-default" type="button" style="margin-top: auto"
                                                 onclick="addevent()">添加活动
                                         </button>
                                     </div>
@@ -197,7 +197,7 @@
                     parameter1.focus();
                     return false;
                 }
-                if (parameter1.val()%100 != 1 || parameter1.val()%100 != 0) {
+                if (parameter1.val() != 1 && parameter1.val()%100 != 0) {
                     setTimeout(function () {
                         lightyear.loading('hide');
                         lightyear.notify('请输入1或100的倍数', 'danger');

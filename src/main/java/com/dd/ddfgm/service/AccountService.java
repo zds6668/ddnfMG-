@@ -1,6 +1,7 @@
 package com.dd.ddfgm.service;
 
 import com.dd.ddfgm.entity.Account;
+import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -15,6 +16,8 @@ public interface AccountService {
     Integer getAccountNum();
 
     Integer getLoginAccounts();
+
+    List<OnlineAccount> getOnlineAccounts();
 
     Role getRole(String charac_name);
 

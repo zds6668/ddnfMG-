@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{common/head}"></head>
+
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <!--左侧导航-->
+        <div th:replace="~{common/aside::aside}"></div>
+        <!--End 左侧导航-->
+
+        <!--头部信息aside-->
+        <div th:replace="~{common/aside::header}"></div>
+        <!--End 头部信息aside-->
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="row" style="margin: 20px">
+                <!--角色列表遍历-->
+                <div class="row" style="float: left">
+                    <div class="col-lg-12">
+                        <div class="card" style="width: 60%;float: left">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr >
+                                            <th style="width: 7%">所属账号</th>
+                                            <th style="width: 7%">角色id</th>
+                                            <th style="width: 7%">角色名</th>
+                                            <th style="width: 7%">职业</th>
+                                            <th style="width: 20%">等级(70满级)</th>
+                                            <th style="width: 20%">登录IP</th>
+                                            <th style="width: 7%">选择</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardEmail" style="width: 40%;float: left">
+                            <div class="card-header">
+                                <h4>邮件管理</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 7%">角色id</th>
+                                            <th style="width: 7%">角色名</th>
+                                            <th style="width: 7%">职业</th>
+                                            <th style="width: 20%">等级(70满级)</th>
+                                            <th style="width: 20%">角色创建时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/js/main.min.js"></script>
+<script type="text/javascript">
+    function roleRefresh(element) {
+        var selectedroleno = element.parentNode.parentNode.children[0].innerText;
+        var selectedrolename = element.parentNode.parentNode.children[1].innerText;
+        var selectedrole = document.getElementById('selectedrole');
+        // 装载局部刷新返回的页面
+        selectedrole.innerText = '选中角色:' + selectedrolename;
+    }
+</script>
+<!--图表插件-->
+</body>
+</html>

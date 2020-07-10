@@ -1,6 +1,7 @@
 package com.dd.ddfgm.service.impl;
 
 import com.dd.ddfgm.entity.Account;
+import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.entity.User;
 import com.dd.ddfgm.enums.JobsEnum;
@@ -43,6 +44,17 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Integer getLoginAccounts() {
         return accountMapper.getLoginAccounts().size();
+    }
+
+    @Override
+    public List<OnlineAccount> getOnlineAccounts() {
+        ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getLoginAccounts();
+        for (OnlineAccount onlineAccount : onlineAccounts) {
+            String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
+            String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
+            onlineAccount.setGameCareer(GameCareer);
+        }
+        return accountMapper.getLoginAccounts();
     }
 
     @Override

@@ -53,18 +53,6 @@ public class AccountController {
         return new ModelAndView("index", map);
     }
 
-    @RequestMapping("/getroles")
-    @ResponseBody
-    public List<Role> getAccountRoles() {
-        return accountService.getRoles(1);
-    }
-
-    @RequestMapping("/getrole")
-    @ResponseBody
-    public Role getRole() {
-        return accountService.getRole("jiangju");
-    }
-
     @PostMapping("/db")
     public String rechargeDB(@RequestParam(value = "dbname") String accountname,
                               @RequestParam(value = "dbnum", defaultValue = "0") Integer cera,
