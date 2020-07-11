@@ -187,6 +187,50 @@
         });
     };
 
+    // onclick触发js
+    function addemail() {
+        let url = "/roles/";
+        if (element.id === "allroles") {
+            url = url + "all";
+        } else
+            url = url + "online";
+        lightyear.loading('show');
+        $.ajax({
+            type: "POST",
+            url: url,
+            dataType: 'json',
+            success: function (result) {
+                if (result != null) {
+                    $("#rolestr").empty(); //清空
+                    let item = "";
+                    for (let i = 0; i < result.length; i++) {
+                        item +=
+                            "<tr class='trpa'><td>" + result[i].accountname + "</td>" +
+                            "<td>" + result[i].charac_no + "</td>" +
+                            "<td>" + result[i].charac_name + "</td>" +
+                            "<td>" + result[i].gameCareer + "</td>" +
+                            "<td>" + result[i].lev + "</td>" +
+                            "<td>" + result[i].last_login_date + "</td>" +
+                            "<td>" + result[i].login_ip + "</td>" +
+                            "<td class='patd'><button type='button' class='btn btn-default' onClick='roleRefresh(this)'>" + '选中' + "</button></td>";
+                    }
+                    lightyear.loading('hide');
+                    $("#rolestr").append(item);   // 显示到里面
+                } else {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('好像加载不出来~', 'danger');
+                    }, 1e3)
+                }
+            },
+            error: function (data) {
+                setTimeout(function () {
+                    lightyear.loading('hide');
+                    lightyear.notify('服务器错误请重试~', 'danger');
+                }, 1e3)
+            },
+        });
+    };
 </script>
 <!--图表插件-->
 </body>
