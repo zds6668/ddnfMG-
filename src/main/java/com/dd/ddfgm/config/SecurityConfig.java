@@ -1,6 +1,6 @@
 package com.dd.ddfgm.config;
 
-import com.dd.ddfgm.service.CustomUserDetailsService;
+import com.dd.ddfgm.service.impl.CustomUserDetailsService;
 import com.dd.ddfgm.Validate.ValidateCodeFilter;
 import com.dd.ddfgm.utils.md5PasswordEncoder;
 import org.springframework.context.annotation.Bean;

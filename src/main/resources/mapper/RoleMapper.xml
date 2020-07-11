@@ -20,4 +20,14 @@
             </if>
         </where>
     </select>
+
+    <!--向角色发送邮件-->
+    <insert id="addEmail" parameterType="com.dd.ddfgm.entity.EmailPojo">
+        insert into taiwan_cain_2nd.postal
+        (occ_time,send_charac_name,receive_charac_no,amplify_option,amplify_value,seperate_upgrade,seal_flag,item_id,add_info,upgrade,gold,letter_id)
+        values (#{occ_time},'GM',#{receive_charac_no},#{hongzi},'0',#{duanzao},#{fengzhuang},#{daima},#{shuliang},#{qianghua},#{jinbi},#{letter_id})
+    </insert>
+    <select id="getNextMailId" resultType="java.lang.Integer">
+        SELECT MAX(letter_id)+1 FROM taiwan_cain_2nd.postal
+    </select>
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.dd.ddfgm.mapper.ItemsMapper">
     <!--根据id查询用户详情-->
     <select id="getItems" resultType="com.dd.ddfgm.entity.Item">
-        select id, it_no, it_name from mysql.dnf_item_id
+        select id, it_no, it_name from laowang.dnf_item_id
         <where>
             <if test="it_no!=null and it_no!=''">
                 and it_no = #{it_no}
