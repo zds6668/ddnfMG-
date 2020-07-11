@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
@@ -57,6 +57,12 @@
 </head>
 
 <body>
+<style th:inline="text">
+    body{
+        background: url("images/loginback.jpeg");
+        background-size: 100%,100%;
+    }
+</style>
 <div class="row lyear-wrapper">
     <div class="lyear-login">
         <div class="login-center">
