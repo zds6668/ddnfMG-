@@ -59,32 +59,32 @@
                                 <div class="input-group m-b-10">
                                     <div style="float: left;width: 60%" class="input-group m-b-10">
                                         <span class="input-group-addon" id="sizing-addon2">发送物品代码</span>
-                                        <input id="item_id" type="text" class="form-control" placeholder="物品id"
+                                        <input id="item_id" type="number" class="form-control" placeholder="物品id"
                                                aria-describedby="sizing-addon2">
                                     </div>
                                     <div style="float: left;width: 40%">
                                         <span style="float: left;width: 30%" class="input-group-addon"
                                               id="sizing-addon6">金币</span>
-                                        <input style="float: left;width: 70%" id="gold" type="text" class="form-control"
+                                        <input style="float: left;width: 70%" id="gold" type="number" class="form-control"
                                                placeholder="gold"
-                                               aria-describedby="sizing-addon2">
+                                               aria-describedby="sizing-addon2" value="0" min="0">
                                     </div>
                                 </div>
                                 <div class="input-group m-b-10">
                                     <div style="float: left;width: 40%">
                                         <span class="input-group-addon" id="sizing-addon3">数量</span>
-                                        <input id="add_info" type="text" class="form-control" placeholder="物品数量"
-                                               aria-describedby="sizing-addon2">
+                                        <input id="add_info" type="number" class="form-control" placeholder="物品数量"
+                                               aria-describedby="sizing-addon2" min="1">
                                     </div>
                                     <div style="float: left;width: 30%">
                                         <span class="input-group-addon" id="sizing-addon4">强化</span>
-                                        <input id="upgrade" type="text" class="form-control" placeholder="强化"
-                                               aria-describedby="sizing-addon2">
+                                        <input id="upgrade" type="number" class="form-control" placeholder="强化"
+                                               aria-describedby="sizing-addon2" value="0" min="0">
                                     </div>
                                     <div style="float: left;width: 30%">
                                         <span class="input-group-addon" id="sizing-addon5">锻造</span>
-                                        <input id="seperate_upgrade" type="text" class="form-control" placeholder="锻造"
-                                               aria-describedby="sizing-addon2">
+                                        <input id="seperate_upgrade" type="number" class="form-control" placeholder="锻造"
+                                               aria-describedby="sizing-addon2" value="0" min="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -100,10 +100,10 @@
                                     </div>
 
                                     <div class="col-xs-12" style="width: 30%;float: left">
-                                        <label class="col-xs-12" for="example-select">添加红字</label>
-                                        <select class="form-control" id="example-select" name="example-select"
+                                        <label class="col-xs-12" for="amplify_option">添加红字</label>
+                                        <select class="form-control" id="amplify_option" name="amplify_option"
                                                 size="5">
-                                            <option th:value=0 th:text=不要红字 th:selected=0></option>
+                                            <option th:value=0 th:text=不要红字 selected="selected"></option>
                                             <option th:value=3 th:text=力量></option>
                                             <option th:value=4 th:text=智力></option>
                                             <option th:value=1 th:text=体力></option>
@@ -111,9 +111,9 @@
                                         </select>
                                     </div>
                                     <div style="width: 30%;float: left">
-                                        <label class="col-xs-12" for="example-select">红字附加</label>
-                                        <input class="form-control" type="text" id="example-text-input-info"
-                                               name="example-text-input-info" placeholder="红字附加值">
+                                        <label class="col-xs-12">红字附加</label>
+                                        <input class="form-control" type="number" id="amplify_value"
+                                               name="amplify_value" placeholder="红字附加值" value="0" min="0">
                                     </div>
 
                                 </div>
@@ -135,14 +135,16 @@
 <script type="text/javascript" src="/js/lightyear.js"></script>
 <script type="text/javascript">
     function roleRefresh(element) {
-        var selectedroleno = element.parentNode.parentNode.children[0].innerText;
-        var selectedrolename = element.parentNode.parentNode.children[1].innerText;
+        var selectedroleno = element.parentNode.parentNode.children[1].innerText;
+        var selectedrolename = element.parentNode.parentNode.children[2].innerText;
         var selectedrole = document.getElementById('selectedrole');
+        var selectedroleinput = document.getElementById('selectedroleno');
         // 装载局部刷新返回的页面
         selectedrole.innerText = '选中角色:' + selectedrolename;
+        selectedroleinput.innerText = selectedroleno;
     }
 
-    // onclick触发js
+    // onclick触发js 获取角色
     function getroles(element) {
         let url = "/roles/";
         if (element.id === "allroles") {
@@ -187,46 +189,55 @@
         });
     };
 
-    // onclick触发js
+    // onclick触发js 发送邮件
     function addemail() {
-        let url = "/roles/";
-        if (element.id === "allroles") {
-            url = url + "all";
-        } else
-            url = url + "online";
-        lightyear.loading('show');
+        let receive_charac_no = document.getElementById('selectedroleno').innerText;
+        let amplify_optionselect = document.getElementById("amplify_option");
+        let amplify_optionindex = amplify_optionselect.selectedIndex;
+        let amplify_option = amplify_optionselect.options[amplify_optionindex].value;
+        let amplify_value = amplify_option === 0 ? 0 : document.getElementById('amplify_value').value;
+        let seal_flag = document.getElementById('seal_flag').checked ? 1 : 0;
+        let item_id = document.getElementById('item_id').value;
+        let upgrade = document.getElementById('upgrade').value;
+        let seperate_upgrade = document.getElementById('seperate_upgrade').value;
+        let add_info = document.getElementById('add_info').value;
+        let gold = document.getElementById('gold').value;
+        lightyear.loading('show')
         $.ajax({
             type: "POST",
-            url: url,
+            url: "/addEmail",
+            data: {
+                "receive_charac_no": receive_charac_no,
+                "amplify_option": amplify_option,
+                "amplify_value": amplify_value,
+                "seal_flag": seal_flag,
+                "item_id": item_id,
+                "upgrade": upgrade,
+                "seperate_upgrade" : seperate_upgrade,
+                "add_info": add_info,
+                "gold": gold,
+            },
             dataType: 'json',
             success: function (result) {
-                if (result != null) {
-                    $("#rolestr").empty(); //清空
-                    let item = "";
-                    for (let i = 0; i < result.length; i++) {
-                        item +=
-                            "<tr class='trpa'><td>" + result[i].accountname + "</td>" +
-                            "<td>" + result[i].charac_no + "</td>" +
-                            "<td>" + result[i].charac_name + "</td>" +
-                            "<td>" + result[i].gameCareer + "</td>" +
-                            "<td>" + result[i].lev + "</td>" +
-                            "<td>" + result[i].last_login_date + "</td>" +
-                            "<td>" + result[i].login_ip + "</td>" +
-                            "<td class='patd'><button type='button' class='btn btn-default' onClick='roleRefresh(this)'>" + '选中' + "</button></td>";
-                    }
+                if (result.status == -1) {
                     lightyear.loading('hide');
-                    $("#rolestr").append(item);   // 显示到里面
+                    lightyear.notify('邮件参数填的不对~', 'danger');
+                } else if (result.res <= 0){
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('邮件添加失败~', 'danger');
+                    }, 1e3)
                 } else {
                     setTimeout(function () {
                         lightyear.loading('hide');
-                        lightyear.notify('好像加载不出来~', 'danger');
+                        lightyear.notify('邮件添加成功~', 'success');
                     }, 1e3)
                 }
             },
-            error: function (data) {
+            error: function (result) {
                 setTimeout(function () {
                     lightyear.loading('hide');
-                    lightyear.notify('服务器错误请重试~', 'danger');
+                    lightyear.notify('参数没填好请重试~', 'danger');
                 }, 1e3)
             },
         });
