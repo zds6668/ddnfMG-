@@ -44,13 +44,13 @@ public class GmToolsController {
 
     @PostMapping({"/addEmail"})
     @ResponseBody
-    public Map<String, Integer> addEmail(@RequestParam(required = false,value = "receive_charac_no") Integer receive_charac_no,
+    public Map<String, Integer> addEmail(@RequestParam(required = true,value = "receive_charac_no") Integer receive_charac_no,
                            @RequestParam("amplify_option") Integer amplify_option,
                            @RequestParam("amplify_value") Integer amplify_value,
                            @RequestParam("seperate_upgrade") Integer seperate_upgrade,
                            @RequestParam("seal_flag") Integer seal_flag,
-                           @RequestParam( value = "item_id") Integer item_id,
-                           @RequestParam(value = "add_info") Integer add_info,
+                           @RequestParam(required = true, value = "item_id") Integer item_id,
+                           @RequestParam(required = true, value = "add_info") Integer add_info,
                            @RequestParam("upgrade") Integer upgrade,
                            @RequestParam("gold") Integer gold) {
         Map<String, Integer> map = new HashMap<>();
