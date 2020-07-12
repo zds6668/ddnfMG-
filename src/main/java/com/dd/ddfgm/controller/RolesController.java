@@ -2,6 +2,7 @@ package com.dd.ddfgm.controller;
 
 import com.dd.ddfgm.entity.Account;
 import com.dd.ddfgm.entity.OnlineAccount;
+import com.dd.ddfgm.entity.RankDTO;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.enums.operatStatus;
 import com.dd.ddfgm.service.AccountService;
@@ -46,6 +47,13 @@ public class RolesController {
                 map.put("status", operatStatus.FAILED.getStatus());
 
         return new ModelAndView("roles", map);
+    }
+
+    @RequestMapping("/rank")
+    public ModelAndView getRank(Map<String, Object> map) {
+        List<RankDTO> rankList = accountService.getRankList();
+        map.put("rankList", rankList);
+        return new ModelAndView("ranklist", map);
     }
 
 }

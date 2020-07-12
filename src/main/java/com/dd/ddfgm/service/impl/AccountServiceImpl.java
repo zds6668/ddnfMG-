@@ -1,9 +1,6 @@
 package com.dd.ddfgm.service.impl;
 
-import com.dd.ddfgm.entity.Account;
-import com.dd.ddfgm.entity.OnlineAccount;
-import com.dd.ddfgm.entity.Role;
-import com.dd.ddfgm.entity.User;
+import com.dd.ddfgm.entity.*;
 import com.dd.ddfgm.enums.JobsEnum;
 import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.mapper.RoleMapper;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -101,5 +99,15 @@ public class AccountServiceImpl implements AccountService {
             return 0;
         int nowCeraPoint = account.getCera_point();
         return accountMapper.rechargeDD(account.getUID(), cera_point + nowCeraPoint);
+    }
+
+    @Override
+    public List<RankDTO> getRankList() {
+        List<RankDTO> rankList = roleMapper.getRankList();
+        int rankLev = 1;
+        for (RankDTO rankDTO : rankList) {
+            rankDTO.setRankLev(rankLev++);
+        }
+        return rankList;
     }
 }

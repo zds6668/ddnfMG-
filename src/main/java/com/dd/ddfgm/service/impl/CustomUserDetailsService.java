@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService { //自定�
             throw new UsernameNotFoundException("用户名或密码错误");
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        //用于添加用户的权限。只要把用户权限添加到authorities 就万事大吉。
+        //用于添加用户的权限。只要把用户权限添加到authorities
         System.out.println(user.getVIP());
         if (!"".equals(user.getVIP())) {
             authorities.add(new SimpleGrantedAuthority("VIP"));

@@ -1,6 +1,7 @@
 package com.dd.ddfgm.mapper;
 
 import com.dd.ddfgm.entity.EmailPojo;
+import com.dd.ddfgm.entity.RankDTO;
 import com.dd.ddfgm.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,6 @@ public interface RoleMapper {
     int getNextMailId();
 
     int addEmail(EmailPojo emailPojo);
+
+    List<RankDTO> getRankList();
 }

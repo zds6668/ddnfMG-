@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{common/head}"></head>
+
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <!--左侧导航-->
+        <div th:replace="~{common/aside::aside}"></div>
+        <!--End 左侧导航-->
+
+        <!--头部信息aside-->
+        <div th:replace="~{common/aside::header}"></div>
+        <!--End 头部信息aside-->
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="row" style="margin: 20px">
+                <div class="card-header"><h4>排行榜</h4></div>
+                <div class="card-body">
+                    <h5>仅显示全服前50位</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>角色名</th>
+                            <th>职业</th>
+                            <th>战斗力</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="rank:${rankList}" th:class="${rank.getRankLev()} <= 10 ? (${rank.getRankLev()} > 3 ? 'warning':(${rank.getRankLev()} == 3 ? 'success':(${rank.getRankLev()} == 2 ? 'info':'danger'))):
+                        ''">
+                            <th scope="row" th:text="${rank.getRankLev()}"></th>
+                            <td th:text="${rank.getZName()}"></td>
+                            <td th:text="${rank.getZDJ()}"></td>
+                            <td th:text="${rank.getZLZ()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/js/main.min.js"></script>
+<script src="/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/js/lightyear.js"></script>
+<script type="text/javascript">
+</script>
+<!--图表插件-->
+</body>
+</html>

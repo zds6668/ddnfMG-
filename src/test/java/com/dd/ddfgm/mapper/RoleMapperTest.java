@@ -1,6 +1,7 @@
 package com.dd.ddfgm.mapper;
 
 import com.dd.ddfgm.entity.Item;
+import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.enums.JobsEnum;
 import com.dd.ddfgm.utils.EnumUtil;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,4 +44,5 @@ public class RoleMapperTest {
         }
 
     }
+
 }

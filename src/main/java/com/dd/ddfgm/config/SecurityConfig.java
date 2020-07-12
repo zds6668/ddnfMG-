@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
@@ -87,12 +88,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        //配置静态文件不需要认证
+        web.ignoring().antMatchers("/static/**");
+        web.ignoring().antMatchers("/fonts/**");
+        web.ignoring().antMatchers("/images/**");
+        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new ValidateCodeFilter("/login"),
                 UsernamePasswordAuthenticationFilter.class);
         //在认证用户名之前认证验证码，如果验证码错误，将不执行用户名和密码的认证
         // TODO 定制请求的授权规则
-        http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests()
+                .antMatchers("/toLogin", "/").permitAll()
+                .antMatchers("/account/dd").hasAuthority("VIP")
+                .antMatchers("/account/db").hasAuthority("VIP")
+                .anyRequest().authenticated();
+        //session管理
+        //session失效后跳转
+        http.sessionManagement().invalidSessionUrl("/toLogin");
+        //单用户登录，如果有一个登录了，同一个用户在其他地方不能登录
+        http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);
         // 开启自动配置的登录功能
         // login 请求来到登录页
         // login?error 重定向到这里表示登录失败
@@ -109,8 +129,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(authenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler());
         //开启自动配置的注销的功能
-        http.logout()
+        http.logout().permitAll()
+                .invalidateHttpSession(true)
+                .deleteCookies("JESSIONID")
                 .logoutSuccessUrl("/toLogin");
+        super.configure(http);
         http.csrf().disable();//关闭csrf功能:跨站请求伪造,默认只能通过post方式提交logout请求
     }
 

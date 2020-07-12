@@ -30,4 +30,8 @@
     <select id="getNextMailId" resultType="java.lang.Integer">
         SELECT MAX(letter_id)+1 FROM taiwan_cain_2nd.postal
     </select>
+
+    <select id="getRankList" resultType="com.dd.ddfgm.entity.RankDTO">
+        SELECT * from taiwan_siroco.zhanli order by ZLZ desc limit 50
+    </select>
 </mapper>

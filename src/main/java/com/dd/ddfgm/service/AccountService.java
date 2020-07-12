@@ -1,9 +1,6 @@
 package com.dd.ddfgm.service;
 
-import com.dd.ddfgm.entity.Account;
-import com.dd.ddfgm.entity.OnlineAccount;
-import com.dd.ddfgm.entity.Role;
-import com.dd.ddfgm.entity.User;
+import com.dd.ddfgm.entity.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +25,6 @@ public interface AccountService {
     Integer rechargeDB(String accountname, Integer cera);
 
     Integer rechargeDD(String accountname, Integer cera_point);
+
+    List<RankDTO> getRankList();
 }
