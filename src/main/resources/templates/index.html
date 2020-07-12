@@ -17,127 +17,129 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="row" style="margin: 20px">
-                <div  style="width: 25%;float: left">
-                <table class="table">
-                    <thead>
-                    <!--输入账号查询-->
-                    <form action="/account/info" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.."
-                                   style="display:inline-block;width: 80%"
-                                   th:value="${status == 0 ? account.getAccountname() :''}">
-                            <button class="btn btn-primary" type="submit">查询</button>
+                <div style="width: 25%;float: left">
+                    <table class="table">
+                        <thead>
+                        <!--输入账号查询-->
+                        <form action="/account/info" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="accountname" placeholder="请输入查询的账号.."
+                                       style="display:inline-block;width: 80%"
+                                       th:value="${status == 0 ? account.getAccountname() :''}">
+                                <button class="btn btn-primary" type="submit">查询</button>
+                            </div>
+                        </form>
+                        </thead>
+                        <tbody>
+                        <tr class="info">
+                            <th scope="row">用户名id</th>
+                            <td th:text="${status == 0 ? account.getUID() :'查无此人'}"></td>
+                        </tr>
+                        <tr class="info">
+                            <th scope="row">QQ</th>
+                            <td th:text="${status == 0 ? account.getQq() :'再查一下看看'}"></td>
+                        </tr>
+                        <tr class="success">
+                            <th scope="row" style="width: 40%">D点余额</th>
+                            <td>
+                                <button th:if="${status == 0}" style="background-color: #a88820" type="button"
+                                        class="btn btn-dark btn-w-md" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo"
+                                        th:text="${status == 0 ? account.getCera_point() :''}">
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">
+                                                    充值D点</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form th:action="@{/account/dd}" method="post">
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="control-label"
+                                                               style="color: #49518b">充值账号：</label>
+                                                        <input type="text" name="ddname" class="form-control"
+                                                               id="recipient-name2"
+                                                               th:value="${status == 0 ? account.getAccountname():''}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="control-label"
+                                                               style="color: #da4453">充值数量：</label>
+                                                        <textarea name="ddnum" class="form-control"
+                                                                  id="message-text2"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">
+                                                            关闭
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary" id="ddbutton">充值
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="success">
+                            <th scope="row">D币余额</th>
+                            <td>
+                                <button th:if="${status == 0}" style="background-color: #423ca8" type="button"
+                                        class="btn btn-dark btn-w-md" data-toggle="modal"
+                                        data-target="#exampleModal2" data-whatever="@mdo"
+                                        th:text="${status == 0 ? account.getCera() :''}">
+                                </button>
+                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel2">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title" id="exampleModalLabel2"
+                                                    style="color: #1c1e2f">充值D币</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form th:action="@{/account/db}" method="post">
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="control-label"
+                                                               style="color: #34728b">充值账号：</label>
+                                                        <input name="dbname" type="text" class="form-control"
+                                                               id="recipient-name"
+                                                               th:value="${status == 0 ? account.getAccountname():''}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="control-label"
+                                                               style="color: #da4453">充值数量：</label>
+                                                        <textarea name="dbnum" class="form-control"
+                                                                  id="message-text"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">关闭
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">充值</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <div style="position: relative;margin-left: 11%">
+                            <img src="//game.gtimg.cn/images/dnf/cp/a20200618surprise/elem2.png">
                         </div>
-                    </form>
-                    </thead>
-                    <tbody>
-                    <tr class="info">
-                        <th scope="row">用户名id</th>
-                        <td th:text="${status == 0 ? account.getUID() :'查无此人'}"></td>
-                    </tr>
-                    <tr class="info">
-                        <th scope="row">QQ</th>
-                        <td th:text="${status == 0 ? account.getQq() :'再查一下看看'}"></td>
-                    </tr>
-                    <tr class="success">
-                        <th scope="row" style="width: 40%">D点余额</th>
-                        <td>
-                            <button th:if="${status == 0}" style="background-color: #a88820" type="button"
-                                    class="btn btn-dark btn-w-md" data-toggle="modal"
-                                    data-target="#exampleModal" data-whatever="@mdo"
-                                    th:text="${status == 0 ? account.getCera_point() :''}">
-                            </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="exampleModalLabel" style="color: #1c1e2f">
-                                                充值D点</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form th:action="@{/account/dd}" method="post">
-                                                <div class="form-group">
-                                                    <label for="recipient-name" class="control-label"
-                                                           style="color: #49518b">充值账号：</label>
-                                                    <input type="text" name="ddname" class="form-control"
-                                                           id="recipient-name2"
-                                                           th:value="${status == 0 ? account.getAccountname():''}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label"
-                                                           style="color: #da4453">充值数量：</label>
-                                                    <textarea name="ddnum" class="form-control"
-                                                              id="message-text2"></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        关闭
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary" id="ddbutton">充值
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="success">
-                        <th scope="row">D币余额</th>
-                        <td>
-                            <button th:if="${status == 0}" style="background-color: #423ca8" type="button"
-                                    class="btn btn-dark btn-w-md" data-toggle="modal"
-                                    data-target="#exampleModal2" data-whatever="@mdo"
-                                    th:text="${status == 0 ? account.getCera() :''}">
-                            </button>
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel2">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close"><span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h4 class="modal-title" id="exampleModalLabel2"
-                                                style="color: #1c1e2f">充值D币</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form th:action="@{/account/db}" method="post">
-                                                <div class="form-group">
-                                                    <label for="recipient-name" class="control-label"
-                                                           style="color: #34728b">充值账号：</label>
-                                                    <input name="dbname" type="text" class="form-control"
-                                                           id="recipient-name"
-                                                           th:value="${status == 0 ? account.getAccountname():''}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label"
-                                                           style="color: #da4453">充值数量：</label>
-                                                    <textarea name="dbnum" class="form-control"
-                                                              id="message-text"></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default"
-                                                            data-dismiss="modal">关闭
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">充值</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <div style="position: relative;margin-left: 11%">
-                        <img src="//game.gtimg.cn/images/dnf/cp/a20200618surprise/elem2.png">
-                    </div>
-                </table>
+                    </table>
                 </div>
                 <!--角色列表遍历-->
                 <div class="row" style="float: right;width: 75%">
@@ -150,7 +152,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                        <tr >
+                                        <tr>
                                             <th style="width: 10%">角色id</th>
                                             <th style="width: 10%">角色名</th>
                                             <th style="width: 7%">职业</th>
@@ -163,16 +165,22 @@
                                         <tr th:each="role:${roles}" class="trpa">
                                             <td id="Charac_no" class="Charac_no" th:text="${role.getCharac_no()}"></td>
                                             <td id="Charac_name" th:text="${role.getCharac_name()}"></td>
-                                            <td><span class="label label-purple" th:text="${role.getGameCareer()}"></span>
+                                            <td><span class="label label-purple"
+                                                      th:text="${role.getGameCareer()}"></span>
                                             </td>
                                             <td>
                                                 <div class="progress progress-striped progress-lg progress-bar-striped active">
-                                                    <div class="progress-bar progress-bar-yellow" style="'width:'+ ${role.lev}+'%'"
+                                                    <div class="progress-bar progress-bar-yellow"
+                                                         th:style="'width:'+ ${role.lev}/70*100 +'%'+';'+'color:#F00'"
                                                          th:text="${role.lev}"></div>
                                                 </div>
                                             </td>
                                             <td th:text="${role.getCreate_time()}"></td>
-                                            <td class="patd"><button type="button" class="btn btn-default" onClick="roleRefresh(this)">选中</button></td>
+                                            <td class="patd">
+                                                <button type="button" class="btn btn-default"
+                                                        onClick="roleRefresh(this)">选中
+                                                </button>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -181,24 +189,71 @@
                         </div>
                         <div class="cardEmail" style="width: 40%;float: left">
                             <div class="card-header">
-                                <h4>邮件管理</h4>
+                                <h4>邮件管理 先选中角色再发哦</h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 7%">角色id</th>
-                                            <th style="width: 7%">角色名</th>
-                                            <th style="width: 7%">职业</th>
-                                            <th style="width: 20%">等级(70满级)</th>
-                                            <th style="width: 20%">角色创建时间</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                <div class="input-group m-b-10">
+                                    <div style="float: left;width: 60%" class="input-group m-b-10">
+                                        <span class="input-group-addon" id="sizing-addon2">发送物品代码</span>
+                                        <input id="item_id" type="number" class="form-control" placeholder="物品id"
+                                               aria-describedby="sizing-addon2">
+                                    </div>
+                                    <div style="float: left;width: 40%">
+                                        <span style="float: left;width: 30%" class="input-group-addon"
+                                              id="sizing-addon6">金币</span>
+                                        <input style="float: left;width: 70%" id="gold" type="number"
+                                               class="form-control"
+                                               placeholder="gold"
+                                               aria-describedby="sizing-addon2" value="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="input-group m-b-10">
+                                    <div style="float: left;width: 40%">
+                                        <span class="input-group-addon" id="sizing-addon3">数量</span>
+                                        <input id="add_info" type="number" class="form-control" placeholder="物品数量"
+                                               aria-describedby="sizing-addon2" min="1">
+                                    </div>
+                                    <div style="float: left;width: 30%">
+                                        <span class="input-group-addon" id="sizing-addon4">强化</span>
+                                        <input id="upgrade" type="number" class="form-control" placeholder="强化"
+                                               aria-describedby="sizing-addon2" value="0" min="0">
+                                    </div>
+                                    <div style="float: left;width: 30%">
+                                        <span class="input-group-addon" id="sizing-addon5">锻造</span>
+                                        <input id="seperate_upgrade" type="number" class="form-control" placeholder="锻造"
+                                               aria-describedby="sizing-addon2" value="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div style="width: 30%;float: left;padding-top:20px;">
+                                        <label class="lyear-checkbox">
+                                            <input type="checkbox" id="seal_flag">
+                                            <span>封装</span>
+                                        </label>
+                                        <div style="padding-top: 50%">
+                                            <button class="btn btn-label btn-primary" onclick="addemail()"><label><i
+                                                    class="mdi mdi-checkbox-marked-circle-outline"></i></label> 发送邮件
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                        </tbody>
-                                    </table>
+                                    <div class="col-xs-12" style="width: 35%;float: left">
+                                        <label class="col-xs-12" for="amplify_option">添加红字</label>
+                                        <select class="form-control" id="amplify_option" name="amplify_option"
+                                                size="5">
+                                            <option th:value=0 th:text=不要红字 selected="selected"></option>
+                                            <option th:value=3 th:text=力量></option>
+                                            <option th:value=4 th:text=智力></option>
+                                            <option th:value=1 th:text=体力></option>
+                                            <option th:value=2 th:text=精神></option>
+                                        </select>
+                                    </div>
+                                    <div style="width: 30%;float: left">
+                                        <label class="col-xs-12">红字附加</label>
+                                        <input class="form-control" type="number" id="amplify_value"
+                                               name="amplify_value" placeholder="红字附加值" value="0" min="0">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -216,12 +271,68 @@
 <script type="text/javascript" src="/js/main.min.js"></script>
 <script type="text/javascript">
     function roleRefresh(element) {
-        var selectedroleno = element.parentNode.parentNode.children[0].innerText;
-        var selectedrolename = element.parentNode.parentNode.children[1].innerText;
+        var selectedroleno = element.parentNode.parentNode.children[1].innerText;
+        var selectedrolename = element.parentNode.parentNode.children[2].innerText;
         var selectedrole = document.getElementById('selectedrole');
+        var selectedroleinput = document.getElementById('selectedroleno');
         // 装载局部刷新返回的页面
         selectedrole.innerText = '选中角色:' + selectedrolename;
-    }
+        selectedroleinput.innerText = selectedroleno;
+    };
+
+    // onclick触发js 发送邮件
+    function addemail() {
+        let receive_charac_no = document.getElementById('selectedroleno').innerText;
+        let amplify_optionselect = document.getElementById("amplify_option");
+        let amplify_optionindex = amplify_optionselect.selectedIndex;
+        let amplify_option = amplify_optionselect.options[amplify_optionindex].value;
+        let amplify_value = amplify_option === 0 ? 0 : document.getElementById('amplify_value').value;
+        let seal_flag = document.getElementById('seal_flag').checked ? 1 : 0;
+        let item_id = document.getElementById('item_id').value;
+        let upgrade = document.getElementById('upgrade').value;
+        let seperate_upgrade = document.getElementById('seperate_upgrade').value;
+        let add_info = document.getElementById('add_info').value;
+        let gold = document.getElementById('gold').value;
+        lightyear.loading('show')
+        $.ajax({
+            type: "POST",
+            url: "/addEmail",
+            data: {
+                "receive_charac_no": receive_charac_no,
+                "amplify_option": amplify_option,
+                "amplify_value": amplify_value,
+                "seal_flag": seal_flag,
+                "item_id": item_id,
+                "upgrade": upgrade,
+                "seperate_upgrade": seperate_upgrade,
+                "add_info": add_info,
+                "gold": gold,
+            },
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == -1) {
+                    lightyear.loading('hide');
+                    lightyear.notify('邮件参数填的不对~', 'danger');
+                } else if (result.res <= 0) {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('邮件添加失败~', 'danger');
+                    }, 1e3)
+                } else {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('邮件添加成功~', 'success');
+                    }, 1e3)
+                }
+            },
+            error: function (result) {
+                setTimeout(function () {
+                    lightyear.loading('hide');
+                    lightyear.notify('参数没填好请重试~', 'danger');
+                }, 1e3)
+            },
+        });
+    };
 </script>
 <!--图表插件-->
 </body>

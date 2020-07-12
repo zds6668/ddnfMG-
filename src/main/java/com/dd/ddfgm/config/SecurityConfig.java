@@ -107,12 +107,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/toLogin", "/").permitAll()
                 .antMatchers("/account/dd").hasAuthority("VIP")
                 .antMatchers("/account/db").hasAuthority("VIP")
+                .antMatchers("/activity/delete").hasAuthority("VIP")
+                .antMatchers("/activity/add").hasAuthority("VIP")
+                .antMatchers("/addEmail").hasAuthority("VIP")
                 .anyRequest().authenticated();
         //session管理
         //session失效后跳转
         http.sessionManagement().invalidSessionUrl("/toLogin");
-        //单用户登录，如果有一个登录了，同一个用户在其他地方不能登录
-        http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);
         // 开启自动配置的登录功能
         // login 请求来到登录页
         // login?error 重定向到这里表示登录失败
@@ -131,9 +132,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //开启自动配置的注销的功能
         http.logout().permitAll()
                 .invalidateHttpSession(true)
-                .deleteCookies("JESSIONID")
                 .logoutSuccessUrl("/toLogin");
-        super.configure(http);
         http.csrf().disable();//关闭csrf功能:跨站请求伪造,默认只能通过post方式提交logout请求
     }
 
