@@ -56,7 +56,7 @@ public class AccountServiceImpl implements AccountService {
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
-            onlineAccount.setAccountname(HiddenStringUtil.hiddenString(onlineAccount.getAccountname()));
+            onlineAccount.setAccountname(HiddenStringUtil.hiddenStringHalf(onlineAccount.getAccountname()));
         }
         return onlineAccounts;
     }
@@ -71,7 +71,7 @@ public class AccountServiceImpl implements AccountService {
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
-            onlineAccount.setAccountname(HiddenStringUtil.hiddenString(onlineAccount.getAccountname()));
+            onlineAccount.setAccountname(HiddenStringUtil.hiddenStringHalf(onlineAccount.getAccountname()));
         }
         return onlineAccounts;
     }

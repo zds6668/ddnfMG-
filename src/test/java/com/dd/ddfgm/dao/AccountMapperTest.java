@@ -91,9 +91,9 @@ public class AccountMapperTest {
     }
     @Test
     public void testhiddenstring() {
-        System.out.println(HiddenStringUtil.hiddenString("111111"));
-        System.out.println(HiddenStringUtil.hiddenString("1"));
-        System.out.println(HiddenStringUtil.hiddenString("asdb"));
-        System.out.println(HiddenStringUtil.hiddenString("1997"));
+        System.out.println(HiddenStringUtil.hiddenStringHalf("111111"));
+        System.out.println(HiddenStringUtil.hiddenStringHalf("1"));
+        System.out.println(HiddenStringUtil.hiddenStringHalf("asdb"));
+        System.out.println(HiddenStringUtil.hiddenStringHalf("1997"));
     }
 }
