@@ -6,6 +6,7 @@ import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.mapper.RoleMapper;
 import com.dd.ddfgm.service.AccountService;
 import com.dd.ddfgm.utils.EnumUtil;
+import com.dd.ddfgm.utils.HiddenStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,7 @@ public class AccountServiceImpl implements AccountService {
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
+            onlineAccount.setAccountname(HiddenStringUtil.hiddenString(onlineAccount.getAccountname()));
         }
         return onlineAccounts;
     }
@@ -69,6 +71,7 @@ public class AccountServiceImpl implements AccountService {
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
+            onlineAccount.setAccountname(HiddenStringUtil.hiddenString(onlineAccount.getAccountname()));
         }
         return onlineAccounts;
     }

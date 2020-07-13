@@ -6,6 +6,7 @@ import com.dd.ddfgm.mapper.AccountMapper;
 import com.dd.ddfgm.mapper.RoleMapper;
 import com.dd.ddfgm.service.AccountService;
 import com.dd.ddfgm.utils.EnumUtil;
+import com.dd.ddfgm.utils.HiddenStringUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class AccountMapperTest {
             System.out.println(role.getGameCareer());
         }
     }
-    @Test
+
     public void getOnlineAccounts() {
         List<OnlineAccount> onlineAccounts = accountMapper.getLoginAccounts();
         for (OnlineAccount account :
@@ -87,5 +88,12 @@ public class AccountMapperTest {
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
         }
+    }
+    @Test
+    public void testhiddenstring() {
+        System.out.println(HiddenStringUtil.hiddenString("111111"));
+        System.out.println(HiddenStringUtil.hiddenString("1"));
+        System.out.println(HiddenStringUtil.hiddenString("asdb"));
+        System.out.println(HiddenStringUtil.hiddenString("1997"));
     }
 }
