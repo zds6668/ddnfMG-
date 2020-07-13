@@ -29,7 +29,7 @@ public class ActivityController {
 
     @RequestMapping("/all")
     public ModelAndView getActivity() {
-        ModelAndView modelAndView = new ModelAndView("/activity");
+        ModelAndView modelAndView = new ModelAndView("activity");
         List<ActivityLog> allActivityLog = activityMapper.getAllActivityLog();
         //可添加的活动
         List<ActivityInfo> allActivityInfo = activityMapper.getAllActivityInfo();
