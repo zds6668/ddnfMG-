@@ -47,7 +47,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<OnlineAccount> getOnlineAccounts() {
         ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getLoginAccounts();
+        String[] ips;
         for (OnlineAccount onlineAccount : onlineAccounts) {
+            // ip匿名化处理
+            ips = onlineAccount.getLogin_ip().split("\\.");
+            onlineAccount.setLogin_ip(new StringBuffer().append(ips[0]).append(".").append(ips[1]).append(".").append("*").append(".").append("*").toString());
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);
@@ -58,7 +62,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<OnlineAccount> getAllAccounts() {
         ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getAllAccounts();
+        String[] ips;
         for (OnlineAccount onlineAccount : onlineAccounts) {
+            ips = onlineAccount.getLogin_ip().split("\\.");
+            onlineAccount.setLogin_ip(new StringBuffer().append(ips[0]).append(".").append(ips[1]).append(".").append("*").append(".").append("*").toString());
             String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
             String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
             onlineAccount.setGameCareer(GameCareer);

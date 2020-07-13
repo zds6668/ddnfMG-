@@ -106,7 +106,7 @@
                                             <td th:text="${event.getLog_name()}"></td>
                                             <td th:text="${event.getEvent_type()}"></td>
                                             <td th:text="${event.getParameter1()}"></td>
-                                            <td>
+                                            <td sec:authorize="hasAnyAuthority('VIP','ROOT')">
                                                 <div class="btn-group">
                                                     <a class="btn btn-xs btn-default"
                                                        th:href="@{/activity/delete(log_id=${event.getLog_id()})}"
@@ -134,7 +134,7 @@
                                         <input class="form-control" type="text" id="example-text-input-info"
                                                name="example-text-input-info" placeholder="1表示开启活动,100即为1倍,200为两倍">
                                         <button class="btn btn-success" type="button" style="margin-top: auto"
-                                                onclick="addevent()">添加活动
+                                                onclick="addevent()" sec:authorize="hasAnyAuthority('VIP','ROOT')">添加活动
                                         </button>
                                     </div>
                                 </div>

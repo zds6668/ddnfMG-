@@ -128,7 +128,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .successForwardUrl("/account/info")
                 .successHandler(authenticationSuccessHandler())
-                .failureHandler(authenticationFailureHandler());
+                .failureHandler(authenticationFailureHandler())
+                .and().exceptionHandling().accessDeniedPage("/403");
         //开启自动配置的注销的功能
         http.logout().permitAll()
                 .invalidateHttpSession(true)

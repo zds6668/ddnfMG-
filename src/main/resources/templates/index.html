@@ -48,7 +48,7 @@
                                         th:text="${status == 0 ? account.getCera_point() :''}">
                                 </button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel">
+                                     aria-labelledby="exampleModalLabel" sec:authorize="hasAnyAuthority('VIP','ROOT')">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -97,7 +97,7 @@
                                         th:text="${status == 0 ? account.getCera() :''}">
                                 </button>
                                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel2">
+                                     aria-labelledby="exampleModalLabel2" sec:authorize="hasAnyAuthority('VIP','ROOT')">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="cardEmail" style="width: 40%;float: left">
+                        <div class="cardEmail" style="width: 40%;float: left" sec:authorize="hasAnyAuthority('VIP','ROOT')">
                             <div class="card-header">
                                 <h4>邮件管理 先选中角色再发哦</h4>
                             </div>

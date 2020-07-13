@@ -56,8 +56,8 @@
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
                         <img class="img-avatar img-avatar-48 m-r-10" src="/images/users/avatar.jpg"
-                             th:alt="${status == 0 ? account.getAccountname() :''}"/>
-                        <span th:text="${status == 0 ? account.getAccountname() :''}"><span class="caret"></span></span>
+                             sec:authentication="principal.username"/>
+                        <span><span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="lyear_pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a></li>

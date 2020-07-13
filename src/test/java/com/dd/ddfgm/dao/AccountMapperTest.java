@@ -37,12 +37,14 @@ public class AccountMapperTest {
             System.out.println(role.getGameCareer());
         }
     }
-
+    @Test
     public void getOnlineAccounts() {
         List<OnlineAccount> onlineAccounts = accountMapper.getLoginAccounts();
         for (OnlineAccount account :
                 onlineAccounts) {
-            System.out.println(account.getLast_login_date());
+            String[] ips = account.getLogin_ip().split("\\.");
+            System.out.println(ips[0]);
+            System.out.println(ips[3]);
         }
     }
 
@@ -75,7 +77,7 @@ public class AccountMapperTest {
         System.out.println(rankDTOList.get(0).getZDJ());
     }
 
-    @Test
+
     public void getAllAccounts() {
         ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getAllAccounts();
         for (OnlineAccount onlineAccount : onlineAccounts) {

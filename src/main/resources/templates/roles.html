@@ -53,9 +53,9 @@
                         </div>
                         <div class="cardEmail" style="width: 40%;float: left">
                             <div class="card-header">
-                                <h4>邮件管理 先选中角色再发哦</h4>
+                                <h4>邮件功能 先选中角色再发哦</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" sec:authorize="hasAnyAuthority('VIP','ROOT')">
                                 <div class="input-group m-b-10">
                                     <div style="float: left;width: 60%" class="input-group m-b-10">
                                         <span class="input-group-addon" id="sizing-addon2">发送物品代码</span>
@@ -162,7 +162,7 @@
                     let item = "";
                     for (let i = 0; i < result.length; i++) {
                         item +=
-                            "<tr class='trpa'><td>" + result[i].accountname + "</td>" +
+                            "<tr class='trpa'><td sec:authorize=\"hasAnyAuthority('VIP','ROOT')\">" + result[i].accountname + "</td>" +
                             "<td>" + result[i].charac_no + "</td>" +
                             "<td>" + result[i].charac_name + "</td>" +
                             "<td>" + result[i].gameCareer + "</td>" +
