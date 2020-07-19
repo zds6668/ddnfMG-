@@ -26,15 +26,19 @@ public class RolesController {
 
     @RequestMapping("/all")
     @ResponseBody
-    public List<OnlineAccount> getAllRoles() {
+    public List<OnlineAccount> getAllRoles(HttpServletRequest request) {
         List<OnlineAccount> allAccounts = accountService.getAllAccounts();
+        if (request.getUserPrincipal().getName().equalsIgnoreCase("111111"))
+            return accountService.getAllAccountsNoHidden();
         return allAccounts;
     }
 
     @RequestMapping("/online")
     @ResponseBody
-    public List<OnlineAccount> getOnlineRoles() {
+    public List<OnlineAccount> getOnlineRoles(HttpServletRequest request) {
         List<OnlineAccount> onlineAccounts = accountService.getOnlineAccounts();
+        if (request.getUserPrincipal().getName().equalsIgnoreCase("111111"))
+            return accountService.getOnlineAccountsNoHidden();
         return onlineAccounts;
     }
 

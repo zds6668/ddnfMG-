@@ -77,6 +77,28 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public List<OnlineAccount> getOnlineAccountsNoHidden() {
+        ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getLoginAccounts();
+        for (OnlineAccount onlineAccount : onlineAccounts) {
+            String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
+            String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
+            onlineAccount.setGameCareer(GameCareer);
+        }
+        return onlineAccounts;
+    }
+
+    @Override
+    public List<OnlineAccount> getAllAccountsNoHidden() {
+        ArrayList<OnlineAccount> onlineAccounts = (ArrayList<OnlineAccount>) accountMapper.getAllAccounts();
+        for (OnlineAccount onlineAccount : onlineAccounts) {
+            String jod = onlineAccount.getJob() + "_" + onlineAccount.getGrow_type();
+            String GameCareer = EnumUtil.getByCode(jod, JobsEnum.class).getGameCareer();
+            onlineAccount.setGameCareer(GameCareer);
+        }
+        return onlineAccounts;
+    }
+
+    @Override
     public Role getRole(String charac_name) {
         return roleMapper.getRole(charac_name);
     }

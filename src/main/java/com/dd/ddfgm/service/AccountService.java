@@ -17,6 +17,9 @@ public interface AccountService {
     List<OnlineAccount> getOnlineAccounts();
 
     List<OnlineAccount> getAllAccounts();
+    List<OnlineAccount> getOnlineAccountsNoHidden();
+
+    List<OnlineAccount> getAllAccountsNoHidden();
 
     Role getRole(String charac_name);
 
