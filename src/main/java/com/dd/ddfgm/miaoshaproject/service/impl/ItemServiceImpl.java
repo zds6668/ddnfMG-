@@ -1,17 +1,17 @@
 package com.dd.ddfgm.miaoshaproject.service.impl;
 
-import com.imooc.miaoshaproject.dao.ItemDOMapper;
-import com.imooc.miaoshaproject.dao.ItemStockDOMapper;
-import com.imooc.miaoshaproject.dataobject.ItemDO;
-import com.imooc.miaoshaproject.dataobject.ItemStockDO;
-import com.imooc.miaoshaproject.error.BusinessException;
-import com.imooc.miaoshaproject.error.EmBusinessError;
-import com.imooc.miaoshaproject.service.ItemService;
-import com.imooc.miaoshaproject.service.PromoService;
-import com.imooc.miaoshaproject.service.model.ItemModel;
-import com.imooc.miaoshaproject.service.model.PromoModel;
-import com.imooc.miaoshaproject.validator.ValidationResult;
-import com.imooc.miaoshaproject.validator.ValidatorImpl;
+import com.dd.ddfgm.miaoshaproject.dao.ItemDOMapper;
+import com.dd.ddfgm.miaoshaproject.dao.ItemStockDOMapper;
+import com.dd.ddfgm.miaoshaproject.dataobject.ItemDO;
+import com.dd.ddfgm.miaoshaproject.dataobject.ItemStockDO;
+import com.dd.ddfgm.miaoshaproject.error.BusinessException;
+import com.dd.ddfgm.miaoshaproject.error.EmBusinessError;
+import com.dd.ddfgm.miaoshaproject.service.ItemService;
+import com.dd.ddfgm.miaoshaproject.service.PromoService;
+import com.dd.ddfgm.miaoshaproject.service.model.ItemModel;
+import com.dd.ddfgm.miaoshaproject.service.model.PromoModel;
+import com.dd.ddfgm.miaoshaproject.validator.ValidationResult;
+import com.dd.ddfgm.miaoshaproject.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 @Service
 public class ItemServiceImpl implements ItemService {

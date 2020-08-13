@@ -1,17 +1,15 @@
 package com.dd.ddfgm.miaoshaproject.service.impl;
 
-import com.imooc.miaoshaproject.dao.OrderDOMapper;
-import com.imooc.miaoshaproject.dao.SequenceDOMapper;
-import com.imooc.miaoshaproject.dataobject.OrderDO;
-import com.imooc.miaoshaproject.dataobject.SequenceDO;
-import com.imooc.miaoshaproject.error.BusinessException;
-import com.imooc.miaoshaproject.error.EmBusinessError;
-import com.imooc.miaoshaproject.service.ItemService;
-import com.imooc.miaoshaproject.service.OrderService;
-import com.imooc.miaoshaproject.service.UserService;
-import com.imooc.miaoshaproject.service.model.ItemModel;
-import com.imooc.miaoshaproject.service.model.OrderModel;
-import com.imooc.miaoshaproject.service.model.UserModel;
+import com.dd.ddfgm.miaoshaproject.dao.OrderDOMapper;
+import com.dd.ddfgm.miaoshaproject.dao.SequenceDOMapper;
+import com.dd.ddfgm.miaoshaproject.dataobject.OrderDO;
+import com.dd.ddfgm.miaoshaproject.dataobject.SequenceDO;
+import com.dd.ddfgm.miaoshaproject.error.BusinessException;
+import com.dd.ddfgm.miaoshaproject.error.EmBusinessError;
+import com.dd.ddfgm.miaoshaproject.service.ItemService;
+import com.dd.ddfgm.miaoshaproject.service.OrderService;
+import com.dd.ddfgm.miaoshaproject.service.model.ItemModel;
+import com.dd.ddfgm.miaoshaproject.service.model.OrderModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -33,9 +31,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ItemService itemService;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private OrderDOMapper orderDOMapper;

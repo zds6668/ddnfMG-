@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 public class ItemModel {
     private Integer id;

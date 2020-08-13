@@ -1,12 +1,12 @@
 package com.dd.ddfgm.miaoshaproject.service;
 
-import com.imooc.miaoshaproject.error.BusinessException;
-import com.imooc.miaoshaproject.service.model.ItemModel;
+import com.dd.ddfgm.miaoshaproject.error.BusinessException;
+import com.dd.ddfgm.miaoshaproject.service.model.ItemModel;
 
 import java.util.List;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 public interface ItemService {
 

@@ -1,12 +1,13 @@
 package com.dd.ddfgm.miaoshaproject.validator;
 
-import org.apache.commons.lang3.StringUtils;
+
+import org.thymeleaf.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:36:03.
  */
 public class ValidationResult {
     //校验结果是否有错

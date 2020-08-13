@@ -1,9 +1,9 @@
 package com.dd.ddfgm.miaoshaproject.service.impl;
 
-import com.imooc.miaoshaproject.dao.PromoDOMapper;
-import com.imooc.miaoshaproject.dataobject.PromoDO;
-import com.imooc.miaoshaproject.service.PromoService;
-import com.imooc.miaoshaproject.service.model.PromoModel;
+import com.dd.ddfgm.miaoshaproject.dao.PromoDOMapper;
+import com.dd.ddfgm.miaoshaproject.dataobject.PromoDO;
+import com.dd.ddfgm.miaoshaproject.service.PromoService;
+import com.dd.ddfgm.miaoshaproject.service.model.PromoModel;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 @Service
 public class PromoServiceImpl implements PromoService {

@@ -1,10 +1,10 @@
 package com.dd.ddfgm.miaoshaproject.controller;
 
-import com.imooc.miaoshaproject.controller.viewobject.ItemVO;
-import com.imooc.miaoshaproject.error.BusinessException;
-import com.imooc.miaoshaproject.response.CommonReturnType;
-import com.imooc.miaoshaproject.service.ItemService;
-import com.imooc.miaoshaproject.service.model.ItemModel;
+import com.dd.ddfgm.miaoshaproject.controller.viewobject.ItemVO;
+import com.dd.ddfgm.miaoshaproject.error.BusinessException;
+import com.dd.ddfgm.miaoshaproject.response.CommonReturnType;
+import com.dd.ddfgm.miaoshaproject.service.ItemService;
+import com.dd.ddfgm.miaoshaproject.service.model.ItemModel;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 @Controller("/item")
 @RequestMapping("/item")

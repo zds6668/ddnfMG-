@@ -1,9 +1,9 @@
 package com.dd.ddfgm.miaoshaproject.service;
 
-import com.imooc.miaoshaproject.service.model.PromoModel;
+import com.dd.ddfgm.miaoshaproject.service.model.PromoModel;
 
 /**
- * Created by hzllb on 2018/11/18.
+ * date 2020-08-13 21:40:59
  */
 public interface PromoService {
     //根据itemid获取即将进行的或正在进行的秒杀活动
