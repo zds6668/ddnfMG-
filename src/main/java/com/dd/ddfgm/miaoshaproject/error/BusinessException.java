@@ -4,7 +4,7 @@ package com.dd.ddfgm.miaoshaproject.error;
  * Created by hzllb on 2018/11/13.
  */
 //包装器业务异常类实现
-public class BusinessException extends Exception implements CommonError {
+public class BusinessException extends RuntimeException implements CommonError {
 
     private CommonError commonError;
 

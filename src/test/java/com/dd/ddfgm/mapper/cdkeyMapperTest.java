@@ -21,8 +21,6 @@ public class cdkeyMapperTest {
 
     //@Test
     public void getMyCdKey() {
-        cdkeyVO cdkeyVO = cdkeyDOMapper.getMyCdKey(1);
-        System.out.println(cdkeyVO.getTitle());
     }
     //@Test
     public void getACdKey() {
@@ -31,7 +29,7 @@ public class cdkeyMapperTest {
     }
     @Test
     public void useACdKey() {
-        Integer result = cdkeyDOMapper.useACdKey(2,"2020081400004601", 1);
+        Integer result = cdkeyDOMapper.useACdKey(2,"2020081400004602", 1);
         System.out.println(result);
     }
 }

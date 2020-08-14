@@ -3,8 +3,10 @@ package com.dd.ddfgm.miaoshaproject.service.impl;
 import com.dd.ddfgm.entity.Account;
 import com.dd.ddfgm.miaoshaproject.dao.OrderDOMapper;
 import com.dd.ddfgm.miaoshaproject.dao.SequenceDOMapper;
+import com.dd.ddfgm.miaoshaproject.dao.cdkeyDOMapper;
 import com.dd.ddfgm.miaoshaproject.dataobject.OrderDO;
 import com.dd.ddfgm.miaoshaproject.dataobject.SequenceDO;
+import com.dd.ddfgm.miaoshaproject.dataobject.cdkeyDO;
 import com.dd.ddfgm.miaoshaproject.error.BusinessException;
 import com.dd.ddfgm.miaoshaproject.error.EmBusinessError;
 import com.dd.ddfgm.miaoshaproject.service.ItemService;
@@ -27,6 +29,9 @@ import java.time.format.DateTimeFormatter;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
+    @Autowired
+    cdkeyDOMapper cdkeyDOMapper;
+
     @Autowired
     AccountService accountService;
 
@@ -73,6 +78,16 @@ public class OrderServiceImpl implements OrderService {
             throw new BusinessException(EmBusinessError.STOCK_NOT_ENOUGH);
         }
 
+
+
+
+        // 检查是否有可用的cdkey
+        cdkeyDO aCdKey = cdkeyDOMapper.getACdKey(itemModel.getDescription());
+        if (null == aCdKey) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"没有可用的cdkey了");
+        }
+
+
         //3.订单入库
         OrderModel orderModel = new OrderModel();
         orderModel.setUserId(account.getUID());
@@ -86,6 +101,15 @@ public class OrderServiceImpl implements OrderService {
         orderModel.setPromoId(promoId);
         orderModel.setOrderPrice(orderModel.getItemPrice().multiply(new BigDecimal(amount)));
 
+        // 检查用户是否有足够的点卷购买,如果订单金额高于用户D点
+        if (orderModel.getOrderPrice().compareTo(BigDecimal.valueOf(account.getCera_point())) != -1)
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"D点不够购买该商品");
+        // 扣减用户的D点
+        int rechargeDDresult = accountService.rechargeDD(account.getAccountname(), (orderModel.getOrderPrice().intValue() * -1));
+        if(rechargeDDresult <= 0){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"D点扣除失败，看下是不是D点不够购买");
+        }
+
         //生成交易流水号,订单号
         orderModel.setId(generateOrderNo());
         OrderDO orderDO = convertFromOrderModel(orderModel);
@@ -93,6 +117,12 @@ public class OrderServiceImpl implements OrderService {
 
         //加上商品的销量
         itemService.increaseSales(itemId,amount);
+
+        // 记录该cdkey已经使用
+        int useACdKeyresult = cdkeyDOMapper.useACdKey(aCdKey.getId(), orderModel.getId(), account.getUID());
+        if (useACdKeyresult <= 0)
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"分配cdkey出错");
+
         //4.返回前端
         return orderModel;
     }

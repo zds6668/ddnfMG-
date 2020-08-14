@@ -1,6 +1,8 @@
 package com.dd.ddfgm.miaoshaproject.controller;
 
 import com.dd.ddfgm.entity.Account;
+import com.dd.ddfgm.miaoshaproject.dao.cdkeyDOMapper;
+import com.dd.ddfgm.miaoshaproject.dataobject.cdkeyVO;
 import com.dd.ddfgm.miaoshaproject.error.BusinessException;
 import com.dd.ddfgm.miaoshaproject.error.EmBusinessError;
 import com.dd.ddfgm.miaoshaproject.response.CommonReturnType;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * date 2020-08-13 21:40:59
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/order")
 @CrossOrigin(origins = {"*"},allowCredentials = "true")
 public class OrderController extends BaseController {
+    @Autowired
+    cdkeyDOMapper cdkeyDOMapper;
+
     @Autowired
     private OrderService orderService;
 
@@ -40,5 +46,16 @@ public class OrderController extends BaseController {
         OrderModel orderModel = orderService.createOrder(account.getAccountname(),itemId,promoId,amount);
 
         return CommonReturnType.create(null);
+    }
+
+    //查看买到的所有订单
+    @RequestMapping(value = "/allorder")
+    @ResponseBody
+    public CommonReturnType allOrder(HttpServletRequest httpServletRequest) throws BusinessException {
+
+        //获取用户的登陆信息
+        Account account = accountService.getAccountInfo(httpServletRequest.getUserPrincipal().getName());
+        List<cdkeyVO> myCdKey = cdkeyDOMapper.getMyCdKey(account.getUID());
+        return CommonReturnType.create(myCdKey);
     }
 }

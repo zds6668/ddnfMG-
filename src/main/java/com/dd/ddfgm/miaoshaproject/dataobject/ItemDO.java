@@ -35,7 +35,7 @@ public class ItemDO {
      *
      * @mbg.generated Sun Nov 18 19:15:18 CST 2018
      */
-    private String description;
+    private Integer description;
 
     /**
      *
@@ -135,7 +135,7 @@ public class ItemDO {
      *
      * @mbg.generated Sun Nov 18 19:15:18 CST 2018
      */
-    public String getDescription() {
+    public Integer getDescription() {
         return description;
     }
 
@@ -147,8 +147,8 @@ public class ItemDO {
      *
      * @mbg.generated Sun Nov 18 19:15:18 CST 2018
      */
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setDescription(Integer description) {
+        this.description = description == null ? null : description;
     }
 
     /**

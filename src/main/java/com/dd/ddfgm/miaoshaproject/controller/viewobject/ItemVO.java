@@ -18,7 +18,7 @@ public class ItemVO {
     private Integer stock;
 
     //商品的描述
-    private String description;
+    private Integer description;
 
     //商品的销量
     private Integer sales;
@@ -102,11 +102,11 @@ public class ItemVO {
         this.stock = stock;
     }
 
-    public String getDescription() {
+    public Integer getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Integer description) {
         this.description = description;
     }
 
