@@ -34,11 +34,6 @@ public class OrderController extends BaseController {
                                         @RequestParam(name="promoId",required = false)Integer promoId,
                                         HttpServletRequest httpServletRequest) throws BusinessException {
 
-        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("IS_LOGIN");
-        if(isLogin == null || !isLogin.booleanValue()){
-            throw new BusinessException(EmBusinessError.USER_NOT_LOGIN,"用户还未登陆，不能下单");
-        }
-
         //获取用户的登陆信息
         Account account = accountService.getAccountInfo(httpServletRequest.getUserPrincipal().getName());
 

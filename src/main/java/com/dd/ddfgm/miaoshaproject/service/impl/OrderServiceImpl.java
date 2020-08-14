@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
         //3.订单入库
         OrderModel orderModel = new OrderModel();
         orderModel.setUserId(account.getUID());
-        orderModel.setItemId(itemId);
+        orderModel.setItemId(itemModel.getDescription());
         orderModel.setAmount(amount);
         if(promoId != null){
             orderModel.setItemPrice(itemModel.getPromoModel().getPromoItemPrice());

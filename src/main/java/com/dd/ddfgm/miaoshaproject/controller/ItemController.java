@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ItemController extends BaseController {
     @RequestMapping(value = "/create",method = {RequestMethod.POST},consumes={CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType createItem(@RequestParam(name = "title")String title,
-                                       @RequestParam(name = "description")String description,
+                                       @RequestParam(name = "description")Integer description,
                                        @RequestParam(name = "price")BigDecimal price,
                                        @RequestParam(name = "stock")Integer stock,
                                        @RequestParam(name = "imgUrl")String imgUrl) throws BusinessException {
@@ -74,7 +75,23 @@ public class ItemController extends BaseController {
         return CommonReturnType.create(itemVOList);
     }
 
+    //商品列表页面浏览
+    @RequestMapping(value = "/miaosha")
+    public String miaosha(){
+        return "/miaosha/listitem";
+    }
 
+    //商品列表页面浏览
+    @RequestMapping(value = "/createItem")
+    public String createItem(){
+        return "/miaosha/createitem";
+    }
+
+    //商品详情页modelandview
+    @RequestMapping(value = "/info",method = {RequestMethod.GET})
+    public ModelAndView info(){
+        return new ModelAndView("/miaosha/getitem");
+    }
 
     private ItemVO convertVOFromModel(ItemModel itemModel){
         if(itemModel == null){

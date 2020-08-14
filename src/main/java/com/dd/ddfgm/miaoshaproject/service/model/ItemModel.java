@@ -24,9 +24,9 @@ public class ItemModel {
     @NotNull(message = "库存不能不填")
     private Integer stock;
 
-    //商品的描述
-    @NotBlank(message = "商品描述信息不能为空")
-    private String description;
+    //商品的代码
+    @NotBlank(message = "商品代码不能为空")
+    private Integer description;
 
     //商品的销量
     private Integer sales;
@@ -78,11 +78,11 @@ public class ItemModel {
         this.stock = stock;
     }
 
-    public String getDescription() {
+    public Integer getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Integer description) {
         this.description = description;
     }
 
