@@ -29,37 +29,33 @@
         <!--End 头部信息aside-->
 
         <!-- 页面主要内容-->
-        <main>row class="lyear-layout-content">
-            <h3 class="form-title">商品列表页
-                <a href="/item/createItem" sec:authorize="hasAnyAuthority('VIP','ROOT')">添加商品</a>
-            </h3>
-            <button id="cdkeys" class="btn btn-brown" type="button" style="margin-top: auto"
-                                         onclick="getcdkey(this)">查看买到的cdkey
-            </button>
+        <main class="lyear-layout-content">
 
             <div class="content">
             </div>
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="card" style="width: 60%;float: left">
+                    <div class="card" style="width: 80%;float: left">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th style="width: 10%">所属账号</th>
-                                        <th style="width: 10%">角色id</th>
-                                        <th style="width: 10%">角色名</th>
-                                        <th style="width: 15%">职业</th>
-                                        <th style="width: 10%">等级</th>
-                                        <th style="width: 20%">上次登录</th>
-                                        <th style="width: 20%">登录IP</th>
-                                        <th style="width: 5%">选择</th>
+                                        <th style="width: 15%">物品名</th>
+                                        <th style="width: 10%">购买D点</th>
+                                        <th style="width: 25%">订单号</th>
+                                        <th style="width: 25%">cdkey</th>
                                     </tr>
                                     </thead>
                                     <tbody class="cdkeystr" id="cdkeystr">
-
+                                    <tr th:each="cdkey:${myCdKey}" class="trpa">
+                                        <td id="title" class="title" th:text="${cdkey.getTitle()}"></td>
+                                        <td id="item_price" th:text="${cdkey.getItem_price()}"></td>
+                                        <td><span class="label label-purple"
+                                                  th:text="${cdkey.getOrderId()}"></span>
+                                        </td>
+                                        <td id="cdkey" th:text="${cdkey.getCdkey()}"></td>
                                     </tbody>
                                 </table>
                             </div>
@@ -78,92 +74,7 @@
 <script type="text/javascript" src="/js/main.min.js"></script>
 <script src="/js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="/js/lightyear.js"></script>
-<script>
-    //定义全局商品数组信息
-    var g_itemList = [];
-    jQuery(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            url: "/item/list",
-            xhrFields: {withCredentials: true},
-            success: function (data) {
-                if (data.status == "success") {
-                    g_itemList = data.data;
-                    reloadDom();
-                } else {
-                    alert("获取商品信息失败，原因为" + data.data.errMsg);
-                }
-            },
-            error: function (data) {
-                alert("获取商品信息失败失败，原因为" + data.responseText);
-            }
-        });
 
-    });
-
-
-    function reloadDom() {
-        for (var i = 0; i < g_itemList.length; i++) {
-            var itemVO = g_itemList[i];
-            var dom = "<div style='width:20%;float: left' data-id='" + itemVO.id + "' id='itemDetail" + itemVO.id + "'><div class='form-group'><div><img style='width:200px;height:150px' src='" + itemVO.imgUrl + "'/></div></div><div class='form-group'><div><label class='control-label'>" + itemVO.title + "</label></div></div><div class='form-group'><label class='control-label'>价格</label><div><label class='control-label'>" + itemVO.price + "</label></div></div><div class='form-group'><label class='control-label'>售卖点卷</label><div><label class='control-label'>" + itemVO.sales + "</label></div></div></div>";
-            $(".content").append($(dom));
-
-            $("#itemDetail" + itemVO.id).on("click", function (e) {
-                window.location.href = "info?id=" + $(this).data("id");
-            });
-        }
-
-    }
-
-
-</script>
-<script type="text/javascript">
-
-    // onclick触发js 获取角色
-    var g_cdkeyList = [];
-    function getcdkey(element) {
-        let url = "/order/allorder";
-        lightyear.loading('show');
-        $.ajax({
-            type: "POST",
-            url: url,
-            dataType: 'json',
-            success: function (data) {
-                if (data.status == "success") {
-                    $("#cdkeystr").empty(); //清空
-                    g_cdkeyList = data.data;
-                    for (let i = 0; i < g_cdkeyList.length; i++) {
-                        var cdkeyVO = g_cdkeyList[i];
-                        let item = "";
-                        item +=
-                            "<tr class='trpa'><td sec:authorize=\"hasAnyAuthority('VIP','ROOT')\">" + result[i].accountname + "</td>" +
-                            "<td>" + result[i].charac_no + "</td>" +
-                            "<td>" + result[i].charac_name + "</td>" +
-                            "<td>" + result[i].gameCareer + "</td>" +
-                            "<td>" + result[i].lev + "</td>" +
-                            "<td>" + result[i].last_login_date + "</td>" +
-                            "<td>" + result[i].login_ip + "</td>" +
-                            "<td class='patd'><button type='button' class='btn btn-default' onClick='roleRefresh(this)'>" + '选中' + "</button></td>";
-                    }
-                    lightyear.loading('hide');
-                    $("#rolestr").append(item);   // 显示到里面
-                } else {
-                    setTimeout(function () {
-                        lightyear.loading('hide');
-                        lightyear.notify('好像加载不出来~', 'danger');
-                    }, 1e3)
-                }
-            },
-            error: function (data) {
-                setTimeout(function () {
-                    lightyear.loading('hide');
-                    lightyear.notify('服务器错误请重试~', 'danger');
-                }, 1e3)
-            },
-        });
-    };
-
-</script>
 <!--图表插件-->
 </body>
 </html>
