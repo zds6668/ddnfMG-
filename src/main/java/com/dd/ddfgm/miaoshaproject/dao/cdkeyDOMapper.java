@@ -14,4 +14,5 @@ public interface cdkeyDOMapper {
     List<cdkeyVO> getMyCdKey(@Param("uid") Integer uid);
     cdkeyDO getACdKey(@Param("itemid") Integer itemid);
     Integer useACdKey(@Param("id") Integer id, @Param("orderid") String orderid, @Param("userid") Integer userid);
+    Integer insertCdkey(cdkeyDO cdkeyDO);
 }

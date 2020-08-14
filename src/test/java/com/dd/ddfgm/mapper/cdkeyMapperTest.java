@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 
 /**
  * Created by Five on 2020/8/15 0:08
@@ -27,9 +33,37 @@ public class cdkeyMapperTest {
         cdkeyDO cdkeyDO = cdkeyDOMapper.getACdKey(430);
         System.out.println(cdkeyDO.getCdkey());
     }
-    @Test
+    //@Test
     public void useACdKey() {
         Integer result = cdkeyDOMapper.useACdKey(2,"2020081400004602", 1);
         System.out.println(result);
+    }
+
+    @Test
+    public void batchInsertCdkey() {
+        String path = "C:\\Users\\dqw66\\Desktop\\CdKey.txt";
+        ArrayList<String> arrayList = new ArrayList<>();
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader bf = new BufferedReader(fr);
+            String str;
+            // 按行读取字符串
+            while ((str = bf.readLine()) != null) {
+                arrayList.add(str);
+            }
+            bf.close();
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] arr = new String[2];
+        for (String s : arrayList) {
+            arr = s.split(" ");
+            cdkeyDO cdkeyDO = new cdkeyDO();
+            cdkeyDO.setItemid(Integer.parseInt(arr[0]));
+            cdkeyDO.setCdkey(arr[1]);
+            cdkeyDOMapper.insertCdkey(cdkeyDO);
+        }
     }
 }
