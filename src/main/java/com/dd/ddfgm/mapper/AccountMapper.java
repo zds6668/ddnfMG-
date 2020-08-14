@@ -13,6 +13,7 @@ public interface AccountMapper {
     User getUserByName(@Param("accountname") String accountname);
 
     Account getAccountInfo(@Param("accountname") String accountname);
+    Account getAccountInfoById(@Param("uid") Integer uid);
 
     Integer getAccountNum();
 

@@ -23,6 +23,18 @@
         </where>
     </select>
 
+    <!--查询指定账户的信息byid-->
+    <select id="getAccountInfoById" resultType="com.dd.ddfgm.entity.Account">
+        select a.UID, a.accountname, a.qq, c.cera, b.cera_point from d_taiwan.accounts as a
+        inner join taiwan_billing.cash_cera as c on a.UID = c.account
+        inner join taiwan_billing.cash_cera_point as b on a.UID = b.account
+        <where>
+            <if test="uid!=null and uid!=''">
+                and a.UID = #{uid}
+            </if>
+        </where>
+    </select>
+
     <!--查询所有在线账户-->
     <select id="getLoginAccounts" resultType="com.dd.ddfgm.entity.OnlineAccount">
  SELECT

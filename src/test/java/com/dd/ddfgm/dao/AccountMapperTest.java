@@ -89,11 +89,18 @@ public class AccountMapperTest {
             onlineAccount.setGameCareer(GameCareer);
         }
     }
-    @Test
     public void testhiddenstring() {
         System.out.println(HiddenStringUtil.hiddenStringHalf("111111"));
         System.out.println(HiddenStringUtil.hiddenStringHalf("1"));
         System.out.println(HiddenStringUtil.hiddenStringHalf("asdb"));
         System.out.println(HiddenStringUtil.hiddenStringHalf("1997"));
+    }
+
+
+    @Test
+    public void getAccountById() {
+        Account account = accountMapper.getAccountInfoById(1);
+        System.out.println(account.getAccountname());
+
     }
 }
