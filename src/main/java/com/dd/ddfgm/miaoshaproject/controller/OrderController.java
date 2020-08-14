@@ -42,7 +42,7 @@ public class OrderController extends BaseController {
         //获取用户的登陆信息
         Account account = accountService.getAccountInfo(httpServletRequest.getUserPrincipal().getName());
 
-        OrderModel orderModel = orderService.createOrder(account.getUID(),itemId,promoId,amount);
+        OrderModel orderModel = orderService.createOrder(account.getAccountname(),itemId,promoId,amount);
 
         return CommonReturnType.create(null);
     }

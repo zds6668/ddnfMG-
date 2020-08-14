@@ -1,5 +1,6 @@
 package com.dd.ddfgm.miaoshaproject.service.impl;
 
+import com.dd.ddfgm.entity.Account;
 import com.dd.ddfgm.miaoshaproject.dao.OrderDOMapper;
 import com.dd.ddfgm.miaoshaproject.dao.SequenceDOMapper;
 import com.dd.ddfgm.miaoshaproject.dataobject.OrderDO;
@@ -10,6 +11,7 @@ import com.dd.ddfgm.miaoshaproject.service.ItemService;
 import com.dd.ddfgm.miaoshaproject.service.OrderService;
 import com.dd.ddfgm.miaoshaproject.service.model.ItemModel;
 import com.dd.ddfgm.miaoshaproject.service.model.OrderModel;
+import com.dd.ddfgm.service.AccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ import java.time.format.DateTimeFormatter;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
+    @Autowired
+    AccountService accountService;
 
     @Autowired
     private SequenceDOMapper sequenceDOMapper;
@@ -37,15 +41,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderModel createOrder(Integer userId, Integer itemId, Integer promoId, Integer amount) throws BusinessException {
+    public OrderModel createOrder(String userId, Integer itemId, Integer promoId, Integer amount) throws BusinessException {
         //1.校验下单状态,下单的商品是否存在，用户是否合法，购买数量是否正确
         ItemModel itemModel = itemService.getItemById(itemId);
         if(itemModel == null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"商品信息不存在");
         }
 
-        UserModel userModel = userService.getUserById(userId);
-        if(userModel == null){
+        Account account = accountService.getAccountInfo(userId);
+        if(account == null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"用户信息不存在");
         }
         if(amount <= 0 || amount > 99){
@@ -71,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
 
         //3.订单入库
         OrderModel orderModel = new OrderModel();
-        orderModel.setUserId(userId);
+        orderModel.setUserId(account.getUID());
         orderModel.setItemId(itemId);
         orderModel.setAmount(amount);
         if(promoId != null){
@@ -95,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    private String generateOrderNo(){
+    String generateOrderNo(){
         //订单号有16位
         StringBuilder stringBuilder = new StringBuilder();
         //前8位为时间信息，年月日
