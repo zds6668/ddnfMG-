@@ -98,7 +98,7 @@ var g_itemVO = {};
 				success:function(data){
 					if(data.status == "success"){
 						alert("下单成功");
-						window.location.reload();
+						window.location.href = "/order/allorder";
 					}else{
 						alert("下单失败，原因为"+data.data.errMsg);
 						if(data.data.errCode == 20003){

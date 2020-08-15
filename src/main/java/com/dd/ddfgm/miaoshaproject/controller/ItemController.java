@@ -78,19 +78,19 @@ public class ItemController extends BaseController {
     //商品列表页面浏览
     @RequestMapping(value = "/miaosha")
     public String miaosha(){
-        return "/miaosha/listitem";
+        return "miaosha/listitem";
     }
 
     //商品列表页面浏览
     @RequestMapping(value = "/createItem")
     public String createItem(){
-        return "/miaosha/createitem";
+        return "miaosha/createitem";
     }
 
     //商品详情页modelandview
     @RequestMapping(value = "/info",method = {RequestMethod.GET})
     public ModelAndView info(){
-        return new ModelAndView("/miaosha/getitem");
+        return new ModelAndView("miaosha/getitem");
     }
 
     private ItemVO convertVOFromModel(ItemModel itemModel){

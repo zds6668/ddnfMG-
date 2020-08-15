@@ -65,6 +65,6 @@ public class OrderController extends BaseController {
             map.put("status", operatStatus.FAILED.getStatus());
             map.put("myCdKey", myCdKey);
         }
-        return new ModelAndView("/miaosha/myorder", map);
+        return new ModelAndView("miaosha/myorder", map);
     }
 }
