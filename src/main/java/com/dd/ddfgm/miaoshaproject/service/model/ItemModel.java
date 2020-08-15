@@ -25,7 +25,7 @@ public class ItemModel {
     private Integer stock;
 
     //商品的代码
-    @NotBlank(message = "商品代码不能为空")
+    @NotNull(message = "商品代码不能为空")
     private Integer description;
 
     //商品的销量
