@@ -1,7 +1,7 @@
 package com.dd.ddfgm.miaoshaproject.error;
 
 /**
- * Created by hzllb on 2018/11/13.
+ * 2020-08-15 12:19:59.
  */
 public interface CommonError {
     public int getErrCode();

@@ -110,6 +110,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/activity/delete").hasAuthority("VIP")
                 .antMatchers("/activity/add").hasAuthority("VIP")
                 .antMatchers("/addEmail").hasAuthority("VIP")
+                // miaosha活动的权限限制
+                .antMatchers("/item/create").hasAuthority("VIP")
+                .antMatchers("/miaosha/createitem").hasAuthority("VIP")
                 .anyRequest().authenticated();
         //session管理
         //session失效后跳转

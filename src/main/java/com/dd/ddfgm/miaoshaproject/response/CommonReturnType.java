@@ -1,7 +1,7 @@
 package com.dd.ddfgm.miaoshaproject.response;
 
 /**
- * Created by hzllb on 2018/11/13.
+ * 2020-08-15 12:19:59.
  */
 public class CommonReturnType {
     //表明对应请求的返回处理结果 "success" 或 "fail"
