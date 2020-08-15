@@ -21,6 +21,35 @@
         </where>
     </select>
 
+    <!--查询指定账户的所有角色的pk场信息-->
+    <select id="getRolesPk" resultType="com.dd.ddfgm.miaoshaproject.controller.viewobject.RolePkVO" parameterType="java.lang.Integer">
+        select a.m_id,a.charac_no,b.win,b.lose,b.pvp_count, convert(unhex(hex(convert(`charac_name` using latin1))) using utf8) as charac_name, b.play_count from taiwan_cain.charac_info as a
+        left join taiwan_cain.pvp_result as b on a.charac_no = b.charac_no
+        <where>
+            <if test="uid!=null and uid!=''">
+                and a.m_id = #{uid}
+            </if>
+            <if test="charac_no!=null and charac_no!=''">
+                and a.charac_no = #{charac_no}
+            </if>
+        </where>
+    </select>
+
+    <update id="setPkWin" parameterType="java.lang.Integer">
+        update taiwan_cain.pvp_result
+        <set>
+            <if test="win != null">
+                win = #{win,jdbcType=INTEGER},
+            </if>
+            <if test="pvp_count != null">
+                pvp_count = #{pvp_count,jdbcType=INTEGER},
+            </if>
+            <if test="play_count != null">
+                play_count = #{play_count,jdbcType=INTEGER},
+            </if>
+        </set>
+        where charac_no = #{charac_no,jdbcType=INTEGER}
+    </update>
     <!--向角色发送邮件-->
     <insert id="addEmail" parameterType="com.dd.ddfgm.entity.EmailPojo" useGeneratedKeys="true" keyColumn="postal_id" keyProperty="postal_id">
         insert into taiwan_cain_2nd.postal

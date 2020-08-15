@@ -1,0 +1,135 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+
+</head>
+
+<body class="login">
+
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{common/head}"></head>
+
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <!--左侧导航-->
+        <div th:replace="~{common/aside::aside}"></div>
+        <!--End 左侧导航-->
+
+        <!--头部信息aside-->
+        <div th:replace="~{common/aside::header}"></div>
+        <!--End 头部信息aside-->
+
+        <!-- 页面主要内容-->
+        <main class="lyear-layout-content">
+
+            <div class="content">
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="card" style="width: 80%;float: left">
+                        <div class="content">
+                            <h3 class="form-title">
+                                <a>---1场PK胜场兑换1000点卷(1个比特币)，兑换后重上下游戏，会清零胜场，点击兑换直接增加到账号D点---</a>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 15%">角色id</th>
+                                        <th style="width: 15%">角色名</th>
+                                        <th style="width: 10%">pk胜场</th>
+                                        <th style="width: 10%">pk败场</th>
+                                        <th style="width: 10%">总场次</th>
+                                        <th style="width: 5%">换取奖励</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="mypk" id="mypk">
+                                    <tr th:each="role:${rolesPk}" class="trpa">
+                                        <td id="characno" th:text="${role.getCharac_no()}"></td>
+                                        <td id="juese" class="juese" th:text="${role.getCharac_name()}"></td>
+                                        <td id="win" th:text="${role.getWin()}"></td>
+                                        <td id="lose" th:text="${role.getLose()}"></td>
+                                        <td><span class="label label-purple"
+                                                  th:text="${role.getPvp_count()}"></span>
+                                        </td>
+                                        <td class="patd">
+                                            <button type="button" class="btn btn-default"
+                                                    onClick="getpk(this)">兑换胜场点卷
+                                            </button>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/js/main.min.js"></script>
+<script src="/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/js/lightyear.js"></script>
+<script>
+    function getpk(element) {
+        var characno = element.parentNode.parentNode.children[0].innerText;
+        var win = element.parentNode.parentNode.children[2].innerText;
+        if (win <= 0) {
+            setTimeout(function () {
+                lightyear.notify("胜场不够就冒乱点", 'danger');
+            }, 1e3)
+            return;
+        }
+        lightyear.loading('show')
+        $.ajax({
+            type: "POST",
+            url: "/roles/getPk",
+            data: {
+                "characno": characno,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == "success") {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify('兑换成功 D点增加' + (1000*data.data.win), 'success');
+                    }, 1e3)
+                    setTimeout(function(){
+                        window.location.href = "/roles/pk";
+                    },5000)
+                } else {
+                    setTimeout(function () {
+                        lightyear.loading('hide');
+                        lightyear.notify(data.data.errMsg, 'danger');
+                    }, 1e3)
+                }
+            },
+            error: function (data) {
+                setTimeout(function () {
+                    lightyear.loading('hide');
+                    lightyear.notify(data.responseText, 'danger');
+                }, 1e3)
+            },
+        });
+    };
+</script>
+<!--图表插件-->
+</body>
+</html>

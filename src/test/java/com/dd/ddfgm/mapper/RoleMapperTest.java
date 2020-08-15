@@ -5,6 +5,7 @@ import com.dd.ddfgm.entity.Item;
 import com.dd.ddfgm.entity.OnlineAccount;
 import com.dd.ddfgm.entity.Role;
 import com.dd.ddfgm.enums.JobsEnum;
+import com.dd.ddfgm.miaoshaproject.controller.viewobject.RolePkVO;
 import com.dd.ddfgm.utils.EnumUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ public class RoleMapperTest {
         }
     }
 
-    @Test
+    //@Test
     public void getRoles() {
         List<Role> roles = roleMapper.getRoles(null);
         System.out.println(roles.size());
@@ -43,7 +44,15 @@ public class RoleMapperTest {
             System.out.println(job);
             System.out.println(EnumUtil.getByCode(job, JobsEnum.class).getGameCareer());
         }
+    }
 
+    @Test
+    public void getRolesPk() {
+        List<RolePkVO> roles = roleMapper.getRolesPk(18000000, null);
+        System.out.println(roles.size());
+        for (RolePkVO role : roles) {
+            System.out.println(role.getWin());
+        }
     }
 
 
