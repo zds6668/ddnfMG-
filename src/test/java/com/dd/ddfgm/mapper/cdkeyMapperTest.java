@@ -57,7 +57,7 @@ public class cdkeyMapperTest {
             e.printStackTrace();
         }
 
-        String[] arr = new String[2];
+        String[] arr;
         for (String s : arrayList) {
             arr = s.split(" ");
             cdkeyDO cdkeyDO = new cdkeyDO();
